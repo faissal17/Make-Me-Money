@@ -1,5 +1,5 @@
-const authController = require("../src/controllers/authController");
-const User = require("../src/models/User");
+const authController = require("../src/controllers/authentication/authController");
+const User = require("../src/models/User.schema");
 const bcryptjs = require("bcryptjs");
 const jsonwebtoken = require("jsonwebtoken");
 

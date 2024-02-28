@@ -1,8 +1,8 @@
-const hashPassword = require('../helpers/hashPassword');
-const User = require('../models/User');
+const hashPassword = require('../../helpers/hashPassword');
+const User = require('../../models/User.schema');
 const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const SendActivateEmail = require('../utils/sendActivateEmail');
+const SendActivateEmail = require('../../utils/sendActivateEmail');
 
 const dotenv = require('dotenv');
 

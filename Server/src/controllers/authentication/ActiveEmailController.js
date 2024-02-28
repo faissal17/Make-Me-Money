@@ -1,7 +1,7 @@
-const express = require("express");
-const dotenv = require("dotenv");
-const jwt = require("jsonwebtoken");
-const User = require("../models/User");
+const express = require('express');
+const dotenv = require('dotenv');
+const jwt = require('jsonwebtoken');
+const User = require('../../models/User.schema');
 
 dotenv.config();
 
@@ -13,19 +13,19 @@ class ActiveEmailController {
       console.log(token);
       const decodedToken = jwt.verify(token, process.env.SECRET_KEY);
       if (!decodedToken) {
-        return res.status(401).json({ error: "Oh hell no" });
+        return res.status(401).json({ error: 'Oh hell no' });
       }
       const email = decodedToken.email;
       await User.findOneAndUpdate(
         { email: email },
         { $set: { isVerified: true } },
-        { new: true }
+        { new: true },
       );
 
-      return res.status(200).json({ success: "Email Activated successfully" });
+      return res.status(200).json({ success: 'Email Activated successfully' });
     } catch (error) {
       console.error(error);
-      return res.status(400).json({ error: "Invalid or expired token." });
+      return res.status(400).json({ error: 'Invalid or expired token.' });
     }
   };
 }
