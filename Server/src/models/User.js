@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -16,7 +16,8 @@ const userSchema = new mongoose.Schema({
   },
   image: {
     type: String,
-    default: null,
+    default:
+      'https://res.cloudinary.com/dmhcnhtng/image/upload/v1643044376/avatars/default_pic_jeaybr.png',
   },
   PhoneNumber: {
     type: String,
@@ -26,18 +27,9 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
-  Adress: {
-    type: String,
-    default: null,
-  },
   passwordResetToken: {
     type: String,
     default: null,
-  },
-  role: {
-    type: String,
-    enum: ["manage", "client", "livreur"],
-    default: "client",
   },
   CreatedAt: {
     type: Date,
@@ -45,6 +37,6 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model('User', userSchema);
 
 module.exports = User;

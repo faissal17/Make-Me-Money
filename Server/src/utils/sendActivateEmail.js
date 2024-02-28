@@ -1,6 +1,6 @@
-const nodemailer = require("nodemailer");
-const dotenv = require("dotenv");
-const jwt = require("jsonwebtoken");
+const nodemailer = require('nodemailer');
+const dotenv = require('dotenv');
+const jwt = require('jsonwebtoken');
 
 dotenv.config();
 
@@ -14,17 +14,17 @@ const SendActivateEmail = async (email) => {
       host: process.env.HOST,
       port: 2525,
       auth: {
-        user: process.env.USER,
+        user: process.env.USERHOST,
         pass: process.env.PASSWORD,
       },
     });
     await transport.sendMail({
-      from: "AlloMedia@gmail.com",
+      from: 'AlloMedia@gmail.com',
       to: email,
-      subject: "Activate Email",
+      subject: 'Activate Email',
       html: `<h1>Click On this link to activate email</h1><a href="${ActivateEmail}">Activate Email Link</a>`,
     });
-    console.log("email send successufully");
+    console.log('email send successufully');
   } catch (error) {
     console.log(error.message);
   }
