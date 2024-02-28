@@ -1,11 +1,13 @@
 const express = require('express');
-const authRouter = require('./src/routes/auth');
+const authRouter = require('./src/routes/authenticationRoutes/auth');
 const dotenv = require('dotenv');
 const mongoose = require('./src/database/connection');
 const bodyParser = require('body-parser');
-const forgetPassRouter = require('./src/routes/forgetPassword');
-const resetPassword = require('./src/routes/ResetPassword');
-const ActiveEmail = require('./src/routes/ActiveEmail');
+const forgetPassRouter = require('./src/routes/authenticationRoutes/forgetPassword');
+const resetPassword = require('./src/routes/authenticationRoutes/ResetPassword');
+const ActiveEmail = require('./src/routes/authenticationRoutes/ActiveEmail');
+const addExperience = require('./src/routes/experienceRoutes/experience.routes');
+
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
@@ -28,6 +30,8 @@ app.use('/api/auth', authRouter);
 app.use('/api/auth', forgetPassRouter);
 app.use('/api/auth', resetPassword);
 app.use('/api/auth', ActiveEmail);
+
+app.use('/experince', addExperience);
 
 app.get('/', (req, res) => {
   res.send('hey');

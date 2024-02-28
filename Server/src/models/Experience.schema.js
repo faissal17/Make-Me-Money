@@ -1,5 +1,4 @@
-const mongoose = require('express');
-
+const mongoose = require('mongoose');
 const experienceSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -35,13 +34,10 @@ const experienceSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  comment: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Comment',
-  },
   like: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Like',
+    default: null,
   },
   status: {
     type: String,
