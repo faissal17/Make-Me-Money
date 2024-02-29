@@ -4,7 +4,10 @@ const problemeRoutes = express.Router();
 
 const addProbleme = require('../../controllers/probleme/addProbleme.contoller');
 const getAllProbleme = require('../../controllers/probleme/getAllProbleme.controller');
+const getProblemeByID = require('../../controllers/probleme/getProblemeByID.controller');
 
 problemeRoutes.route('/').post(addProbleme).get(getAllProbleme);
+
+problemeRoutes.route('/:id').get(getProblemeByID);
 
 module.exports = problemeRoutes;
