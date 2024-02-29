@@ -6,7 +6,8 @@ const bodyParser = require('body-parser');
 const forgetPassRouter = require('./src/routes/authenticationRoutes/forgetPassword');
 const resetPassword = require('./src/routes/authenticationRoutes/ResetPassword');
 const ActiveEmail = require('./src/routes/authenticationRoutes/ActiveEmail');
-const addExperience = require('./src/routes/experienceRoutes/experience.routes');
+const experienceRoutes = require('./src/routes/experienceRoutes/experience.routes');
+const problemeRoutes = require('./src/routes/problemeRoutes/probleme.routes');
 
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
@@ -31,7 +32,9 @@ app.use('/api/auth', forgetPassRouter);
 app.use('/api/auth', resetPassword);
 app.use('/api/auth', ActiveEmail);
 
-app.use('/experince', addExperience);
+app.use('/experince', experienceRoutes);
+
+app.use('/probleme', problemeRoutes);
 
 app.get('/', (req, res) => {
   res.send('hey');
