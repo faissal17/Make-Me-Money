@@ -1,6 +1,6 @@
 const Experience = require('../../models/Experience.schema');
 
-const addExperince = async (req, res) => {
+const addExperience = async (req, res) => {
   const {
     name,
     description,
@@ -11,6 +11,22 @@ const addExperince = async (req, res) => {
     feedback,
     status,
   } = req.body;
+
+  if (
+    !name ||
+    !description ||
+    !website ||
+    !earning ||
+    !tags ||
+    !location ||
+    !feedback ||
+    !status
+  ) {
+    return res
+      .status(400)
+      .json({ status: 'error', message: 'All fields are required' });
+  }
+
   try {
     const experience = await Experience.create({
       name,
@@ -22,12 +38,13 @@ const addExperince = async (req, res) => {
       feedback,
       status,
     });
-    res
+    return res
       .status(201)
-      .json({ status: 'succes', message: 'Experience created', experience });
+      .json({ status: 'success', message: 'Experience created', experience });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Internal server error' });
+    return res.status(500).json({ message: 'Internal server error' });
   }
 };
-module.exports = addExperince;
+
+module.exports = addExperience;
