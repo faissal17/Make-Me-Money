@@ -14,9 +14,14 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  role: {
+    type: String,
+    enum: ['Admin', 'User'],
+    default: 'User',
+  },
   bio: {
     type: String,
-    required: true,
+    default: null,
   },
   image: {
     type: String,
@@ -41,6 +46,6 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-const User = mongoose.model('User.schema', userSchema);
+const User = mongoose.model('User', userSchema);
 
 module.exports = User;

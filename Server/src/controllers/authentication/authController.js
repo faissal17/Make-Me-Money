@@ -10,7 +10,7 @@ dotenv.config();
 
 class authController {
   static register = async (req, res) => {
-    const { name, email, password } = req.body;
+    const { name, email, password, role } = req.body;
     if (!name || !email || !password) {
       return res
         .status(400)
@@ -29,9 +29,10 @@ class authController {
         name,
         email,
         password: hashedPassword,
+        role,
       });
       const token = jwt.sign(
-        { email: user.email, name: user.name },
+        { email: user.email, name: user.name, role: user.role },
         process.env.SECRET_KEY,
         {
           expiresIn: 6000,
