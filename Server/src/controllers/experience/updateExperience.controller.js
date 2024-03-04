@@ -14,21 +14,6 @@ const updateExperience = async (req, res) => {
       status,
     } = req.body;
 
-    if (
-      !name ||
-      !description ||
-      !website ||
-      !earning ||
-      !tags ||
-      !location ||
-      !feedback ||
-      !status
-    ) {
-      return res
-        .status(400)
-        .json({ message: 'At least one field is required for updating' });
-    }
-
     const updateFields = {
       name,
       description,
