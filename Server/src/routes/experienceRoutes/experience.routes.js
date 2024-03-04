@@ -1,6 +1,7 @@
 const express = require('express');
 const experienceRoutes = express.Router();
 const checkAuth = require('../../middlewares/authMiddleware');
+const checkCrud = require('../../middlewares/crudMiddleware');
 
 experienceRoutes.use(checkAuth);
 
@@ -10,7 +11,7 @@ const getExperienceByID = require('../../controllers/experience/getExperienceByI
 const updateExperience = require('../../controllers/experience/updateExperience.controller');
 const deletedExperience = require('../../controllers/experience/deleteExperience.controller');
 
-experienceRoutes.route('/').post(addExperince).get(getAllExperiences);
+experienceRoutes.route('/').post(addExperince).get(checkCrud,getAllExperiences);
 experienceRoutes
   .route('/:id')
   .get(getExperienceByID)
