@@ -5,12 +5,6 @@ const updateProbleme = async (req, res) => {
     const { id } = req.params;
     const { name, description, website, tags, feedback, status } = req.body;
 
-    if (!name && !description && !website && !tags && !feedback && !status) {
-      return res
-        .status(400)
-        .json({ message: 'At least one field is required for updating' });
-    }
-
     const updateFields = {
       name,
       description,
