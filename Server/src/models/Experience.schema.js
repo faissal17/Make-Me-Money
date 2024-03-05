@@ -18,7 +18,7 @@ const experienceSchema = new mongoose.Schema({
     required: true,
   },
   earning: {
-    type: String,
+    type: Number,
     required: true,
   },
   date: {
