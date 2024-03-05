@@ -1,6 +1,7 @@
 const Experience = require('../../models/Experience.schema');
 const jwt = require('jsonwebtoken');
-
+const dotenv = require('dotenv');
+dotenv.config();
 const updateExperience = async (req, res) => {
   const { id } = req.params;
   const token = req.headers.authorization.split(' ')[1];
