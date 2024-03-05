@@ -23,7 +23,7 @@ class authController {
           .status(400)
           .json({ status: 'error', message: 'This email already exists' });
       }
-      SendActivateEmail(email);
+      // SendActivateEmail(email);
       const hashedPassword = await hashPassword(password);
       const user = await User.create({
         name,
@@ -34,9 +34,6 @@ class authController {
       const token = jwt.sign(
         { id: user._id, role: user.role },
         process.env.SECRET_KEY,
-        {
-          expiresIn: 6000,
-        },
       );
       res.status(201).json({ message: 'User created', token });
     } catch (error) {

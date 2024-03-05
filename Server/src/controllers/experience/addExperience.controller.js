@@ -1,6 +1,13 @@
 const Experience = require('../../models/Experience.schema');
+const jwt = require('jsonwebtoken');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 const addExperience = async (req, res) => {
+  const token = req.headers.authorization.split(' ')[1];
+  const decodedToken = jwt.verify(token, process.env.SECRET_KEY);
+
   const {
     name,
     description,
@@ -37,6 +44,7 @@ const addExperience = async (req, res) => {
       location,
       feedback,
       status,
+      user: decodedToken.id,
     });
     return res
       .status(201)
