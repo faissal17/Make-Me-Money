@@ -1,73 +1,74 @@
-const authController = require("../src/controllers/authentication/authController");
-const User = require("../src/models/User.schema");
-const bcryptjs = require("bcryptjs");
-const jsonwebtoken = require("jsonwebtoken");
+const authController = require('../src/controllers/authentication/authController');
+const User = require('../src/models/User.schema');
+const bcryptjs = require('bcryptjs');
+const jsonwebtoken = require('jsonwebtoken');
+const hashPassword = require('../src/helpers/hashPassword');
 
-jest.mock("../src/models/User");
-jest.mock("bcryptjs");
-jest.mock("jsonwebtoken");
+jest.mock('../src/models/User.schema');
+jest.mock('bcryptjs');
+jest.mock('jsonwebtoken');
 
 const res = {
   status: jest.fn().mockReturnThis(),
   json: jest.fn(),
 };
 
-it("should return status 400 if email is empty", async () => {
+it('should return status 400 if email is empty', async () => {
   const req = {
     body: {
-      name: "",
-      email: "faissalaoukacha@gmail.com",
-      password: "faissalfaissal",
-      role: "client",
+      name: '',
+      email: 'faissalaoukacha@gmail.com',
+      password: 'faissalfaissal',
+      role: 'client',
     },
   };
   await authController.register(req, res);
   expect(res.status).toHaveBeenCalledWith(400);
   expect(res.json).toHaveBeenCalledWith({
-    status: "error",
-    message: "All fields are required",
+    status: 'error',
+    message: 'All fields are required',
   });
 });
-it("should return status 400 if email is empty", async () => {
+it('should return status 400 if email is empty', async () => {
   const req = {
     body: {
-      name: "faissal",
-      email: "",
-      password: "faissalfaissal",
-      role: "client",
+      name: 'faissal',
+      email: '',
+      password: 'faissalfaissal',
+      role: 'client',
     },
   };
   await authController.register(req, res);
   expect(res.status).toHaveBeenCalledWith(400);
   expect(res.json).toHaveBeenCalledWith({
-    status: "error",
-    message: "All fields are required",
+    status: 'error',
+    message: 'All fields are required',
   });
 });
-it("should return status 400 if password is empty", async () => {
+it('should return status 400 if password is empty', async () => {
   const req = {
     body: {
-      name: "faissal",
-      email: "faissalaoukacha@gmail.com",
-      password: "",
-      role: "client",
+      name: 'faissal',
+      email: 'faissalaoukacha@gmail.com',
+      password: '',
+      role: 'client',
     },
   };
   await authController.register(req, res);
   expect(res.status).toHaveBeenCalledWith(400);
   expect(res.json).toHaveBeenCalledWith({
-    status: "error",
-    message: "All fields are required",
+    status: 'error',
+    message: 'All fields are required',
   });
 });
 
-it("should return 400 if This email already exists", async () => {
+it('should return 400 if This email already exists', async () => {
   const req = {
     body: {
-      name: "suarez",
-      email: "inar@gmail.com",
-      password: "aoukacha",
-      role: "client",
+      name: 'suarez',
+      email: 'inar@gmail.com',
+      password: 'aoukacha',
+      role: 'client',
     },
   };
 
@@ -77,7 +78,7 @@ it("should return 400 if This email already exists", async () => {
 
   expect(res.status).toHaveBeenCalledWith(400);
   expect(res.json).toHaveBeenCalledWith({
-    status: "error",
-    message: "This email already exists",
+    status: 'error',
+    message: 'This email already exists',
   });
 });
