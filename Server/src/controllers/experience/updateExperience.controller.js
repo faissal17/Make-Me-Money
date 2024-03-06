@@ -1,12 +1,15 @@
 const Experience = require('../../models/Experience.schema');
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
+
 dotenv.config();
+
 const updateExperience = async (req, res) => {
-  const { id } = req.params;
-  const token = req.headers.authorization.split(' ')[1];
-  const decodedToken = jwt.verify(token, process.env.SECRET_KEY);
   try {
+    const { id } = req.params;
+    const token = req.headers.authorization.split(' ')[1];
+    const decodedToken = jwt.verify(token, process.env.SECRET_KEY);
+
     const {
       name,
       description,
@@ -34,10 +37,11 @@ const updateExperience = async (req, res) => {
     if (!foundExperience) {
       return res.status(404).json({ message: 'No Experience was found' });
     }
-    if (
-      foundExperience.user == decodedToken.id ||
-      decodedToken.role == 'Admin'
-    ) {
+
+    const isAuthorized =
+      foundExperience.user == decodedToken.id || decodedToken.role === 'Admin';
+
+    if (isAuthorized) {
       const updatedExperience = await Experience.findByIdAndUpdate(
         id,
         updateFields,
@@ -47,11 +51,11 @@ const updateExperience = async (req, res) => {
         },
       );
 
-      res
+      return res
         .status(200)
         .json({ message: 'Experience updated', updatedExperience });
     } else {
-      res.status(403).json({
+      return res.status(403).json({
         message: "Unauthorized - You can't update this experience",
       });
     }
@@ -61,7 +65,7 @@ const updateExperience = async (req, res) => {
     }
 
     console.error(error);
-    res.status(500).json({ message: 'Internal server error' });
+    return res.status(500).json({ message: 'Internal server error' });
   }
 };
 
