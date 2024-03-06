@@ -1,10 +1,17 @@
 import './App.css';
 import './index.css';
+import Register from './components/Authentication/Register';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
-    <h1 className="text-3xl font-bold underline text-red-500">Hello world!</h1>
+    <React.Fragment>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/Register" Component={Register} />
+        </Routes>
+      </BrowserRouter>
+    </React.Fragment>
   );
 }
 
