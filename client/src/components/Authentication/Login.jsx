@@ -24,7 +24,7 @@ function Login() {
         <div className="register-link">
           <p>
             Don't you have an account?
-            <Link className="a" to="">
+            <Link className="a" to="/Register">
               Register
             </Link>
           </p>

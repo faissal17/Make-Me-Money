@@ -1,6 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;700&display=swap');
 body {
-  background-color: #c8baef;
+  background-image: linear-gradient(
+    to right top,
+    #b6a8f9,
+    #c8bdfb,
+    #dad3fd,
+    #ede9fe,
+    #ffffff
+  );
 }
 * {
   padding: 0;
