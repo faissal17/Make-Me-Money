@@ -28,6 +28,8 @@ header {
 
 nav a {
   margin: 0 1rem;
+  font-size: 20px;
+  font-weight: bold;
   color: var(--textColor);
   text-decoration: none;
 }
@@ -58,6 +60,10 @@ nav {
   header .nav-btn {
     visibility: visible;
     opacity: 1;
+  }
+
+  header h3 {
+    visibility: hidden;
   }
 
   header nav {
@@ -92,6 +98,10 @@ nav {
 
 /* body section */
 
+section {
+  padding: 6rem;
+}
+
 .ImageCode {
   margin-top: 30px;
   width: 30%;
@@ -105,7 +115,7 @@ nav {
     flex-direction: column;
   }
   .ImageCode {
-    width: 90%;
+    width: 100%;
     margin-bottom: 30px;
   }
   .Card-image {
@@ -117,7 +127,7 @@ nav {
 /* Footer section */
 
 .section-padding {
-  padding: 2rem 2rem;
+  padding: 1rem 2rem;
 }
 .footer {
   background-color: #3a3a5c;
@@ -138,17 +148,19 @@ nav {
   margin-bottom: 1rem;
 }
 .footer-links-div {
-  width: 200px;
+  width: 500px;
   margin: 1rem;
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
   color: white;
 }
+
 .footer-links-div a {
   color: white;
   text-decoration: none;
 }
+
 .footer-links-div h4 {
   color: #96b6f1;
   font-size: 20px;

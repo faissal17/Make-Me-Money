@@ -10,12 +10,23 @@ function Footer() {
           <div className="footer-links-div">
             <h4>About Us</h4>
             <p className="text-sm">
-              Auto Hall est un groupe marocain leader dans l'importation, la
-              distribution et la location automobile. Ses filiales représentent
-              des marques telles que Ford, Mitsubishi Motors, Foton, etc. Avec
-              plus de 182 000 ventes de véhicules en 2021, dont 150 000 voitures
-              particulières, le groupe exploite 65 agences et emploie 1 600
-              personnes, dont le siège est à Casablanca.
+              Make Me Money, is a trusted website, when I discovered the
+              Internet for the first time, I was like a drop in the ocean, money
+              is significant for a good living, I tried to make money from the
+              Internet but without a result, so I created this website so you
+              don't face the same problem i had, here is a whole community to
+              help you make money in a safe way Make Me Money, is a trusted
+              website, when I discovered the Internet for the first time, I was
+              like a drop in the ocean, money is significant for a good living,
+              I tried to make money from the Internet but without a result, so I
+              created this website so you don't face the same problem i had,
+              here is a whole community to help you make money in a safe way
+              Make Me Money, is a trusted website, when I discovered the
+              Internet for the first time, I was like a drop in the ocean, money
+              is significant for a good living, I tried to make money from the
+              Internet but without a result, so I created this website so you
+              don't face the same problem I had, here is a whole community to
+              help you make money in a safe way
             </p>
           </div>
 
@@ -25,40 +36,13 @@ function Footer() {
             <p>Fax : 0522 76 14 14/15</p>
             <p>Phone : 0522 76 14 00/01/02</p>
           </div>
-          <div className="footer-links-div">
-            <h4>Find Us</h4>
-            <div className="flex">
-              <a href="https://www.facebook.com/groupeautohall">
-                <FaFacebook className="mr-2 text-blue-500 text-2xl" />
-              </a>
-              <p>Facebook</p>
-            </div>
-            <div className="flex">
-              <a href="https://instagram.com/groupeautohall?igshid=MzRlODBiNWFlZA==">
-                <FaInstagram className="mr-2 text-pink-500 text-2xl" />
-              </a>
-              <p>Instagram</p>
-            </div>
-            <div className="flex">
-              <a href="https://www.linkedin.com/company/autohalllallayacout/">
-                <FaLinkedin className="mr-2 text-blue-700 text-2xl" />
-              </a>
-              <p>Linkedin</p>
-            </div>
-            <div className="flex">
-              <a href="https://www.youtube.com/@groupeautohall6720">
-                <FaYoutube className="mr-2 text-red-500 text-2xl" />
-              </a>
-              <p>Youtube</p>
-            </div>
-          </div>
         </div>
         <hr />
         <div className="footer-below mt-3">
           <div className="footer-copyright">
             <p>
-              Copyright @{new Date().getFullYear()} Auto Hall - Tous droits
-              réservés.
+              Copyright @{new Date().getFullYear()} Make Me Money - All right
+              are reserved
             </p>
           </div>
           <div className="footer-below-links">
