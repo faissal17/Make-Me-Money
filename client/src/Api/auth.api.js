@@ -60,3 +60,19 @@ export const forgetPassword = async (email) => {
     throw error;
   }
 };
+export const resetPassword = async (password, token) => {
+  try {
+    const response = await AuthApi.post(`/resetpassword?token=${token}`, {
+      password: password,
+    });
+
+    if (response.status === 200) {
+      return response.data;
+    } else {
+      throw new Error('reset password failed');
+    }
+  } catch (error) {
+    console.error('Error while reseting the password in:', error);
+    throw error;
+  }
+};

@@ -3,6 +3,7 @@ import LandingPage from './components/MainApp/LandingPage';
 import Register from './components/Authentication/Register';
 import Login from './components/Authentication/Login';
 import ForgotPassword from './components/Authentication/ForgotPassword';
+import ResetPassword from './components/Authentication/ResetPassword';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
           <Route path="/Login" Component={Login} />
           <Route path="/Register" Component={Register} />
           <Route path="/ForgetPassword" Component={ForgotPassword} />
+          <Route path="/resetpassword" Component={ResetPassword} />
         </Routes>
       </BrowserRouter>
     </React.Fragment>
