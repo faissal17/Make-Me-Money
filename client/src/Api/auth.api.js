@@ -23,3 +23,22 @@ export const login = async (email, password) => {
     throw error;
   }
 };
+
+export const register = async (name, email, password) => {
+  try {
+    const response = await AuthApi.post('/register', {
+      name: name,
+      email: email,
+      password: password,
+    });
+    if (response.status === 201) {
+      const token = response.data.token;
+      Cookies.set('token', token);
+    } else {
+      throw new Error('Register failed');
+    }
+  } catch (error) {
+    console.error('Error in Register:', error);
+    throw error;
+  }
+};
