@@ -1,7 +1,7 @@
 import React from 'react';
-import '../style/main.css';
-import background from '../assets/images/App.png';
-import logo from '../assets/images/programing.png';
+import '../../style/main.css';
+import background from '../../assets/images/App.png';
+import logo from '../../assets/images/programing.png';
 function Section() {
   return (
     <section>

@@ -1,8 +1,8 @@
 import React from 'react';
-import problem from '../assets/images/problem.png';
-import money from '../assets/images/money.png';
-import project from '../assets/images/project.png';
-import '../style/main.css';
+import problem from '../../assets/images/problem.png';
+import money from '../../assets/images/money.png';
+import project from '../../assets/images/project.png';
+import '../../style/main.css';
 function Card() {
   return (
     <React.Fragment>

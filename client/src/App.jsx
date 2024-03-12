@@ -4,6 +4,7 @@ import Register from './components/Authentication/Register';
 import Login from './components/Authentication/Login';
 import ForgotPassword from './components/Authentication/ForgotPassword';
 import ResetPassword from './components/Authentication/ResetPassword';
+import Home from './components/Experiences/Home';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
@@ -16,6 +17,10 @@ function App() {
           <Route path="/Register" Component={Register} />
           <Route path="/ForgetPassword" Component={ForgotPassword} />
           <Route path="/resetpassword" Component={ResetPassword} />
+
+          {/*Experiences Routes*/}
+
+          <Route path="/Home" Component={Home} />
         </Routes>
       </BrowserRouter>
     </React.Fragment>
