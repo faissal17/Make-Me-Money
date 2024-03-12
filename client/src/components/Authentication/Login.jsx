@@ -72,7 +72,7 @@ function Login() {
           ) : null}
         </div>
         <div className="remeber-forget">
-          <Link className="a" to="">
+          <Link className="a" to="/ForgetPassword">
             Forget Password
           </Link>
         </div>
@@ -82,7 +82,7 @@ function Login() {
         <div className="register-link">
           <p>
             Don't you have an account?
-            <Link className="a" to="/Register">
+            <Link className="a mt-2" to="/Register">
               Register
             </Link>
           </p>

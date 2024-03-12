@@ -86,7 +86,7 @@ function Register() {
           ) : null}
         </div>
         <div className="remeber-forget">
-          <Link className="a" to="">
+          <Link className="a mt-2" to="/ForgetPassword">
             Forget Password
           </Link>
         </div>

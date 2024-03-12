@@ -34,11 +34,29 @@ export const register = async (name, email, password) => {
     if (response.status === 201) {
       const token = response.data.token;
       Cookies.set('token', token);
+      console.log(token);
     } else {
       throw new Error('Register failed');
     }
   } catch (error) {
     console.error('Error in Register:', error);
+    throw error;
+  }
+};
+
+export const forgetPassword = async (email) => {
+  try {
+    const response = await AuthApi.post('/forgetpassword', {
+      email: email,
+    });
+
+    if (response.status === 200) {
+      return response.data;
+    } else {
+      throw new Error('Error in operation');
+    }
+  } catch (error) {
+    console.error('Error:', error);
     throw error;
   }
 };
