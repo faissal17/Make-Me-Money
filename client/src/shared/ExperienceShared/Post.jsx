@@ -1,50 +1,64 @@
-import React from 'react';
-import image from '../../assets/images/img.jpg';
+import React, { useEffect, useState } from 'react';
+import { getAllExp } from '../../Api/Experience.api';
 
 function Post() {
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    getAllExp()
+      .then((response) => {
+        setPosts(response);
+        console.log('Experience data:', response);
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
+
   return (
-    <div class="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
-      <div class="rounded overflow-hidden flex flex-col max-w-xl mx-auto">
-        <a href="#">
-          <img class="w-full" src={image} alt="Sunset in the mountains" />
-        </a>
-        <div class="relative -mt-16 px-10 pt-5 pb-16 bg-white m-10">
-          <a
-            href="#"
-            class="font-semibold text-lg  hover:text-indigo-600 transition duration-500 ease-in-out inline-block mb-2"
-          >
-            The Best Activewear from the Nordstrom Anniversary Sale
+    <div className="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
+      {posts.map((post) => (
+        <div
+          key={post._id}
+          className="rounded overflow-hidden flex flex-col max-w-xl mx-auto"
+        >
+          <a href="#">
+            <img
+              className="w-full h-96 object-cover"
+              src={post.image}
+              alt="Sunset in the mountains"
+            />
           </a>
-          <p class="text-gray-500 text-sm">
-            Today, im covering one of my favorite parts of the Nordstrom
-            Anniversary Sale: the activewear!
-          </p>
-          <p class="mt-5 text-gray-600 text-xs">
-            By
+          <div className="relative -mt-16 px-10 pt-5 pb-16 bg-white m-10">
             <a
               href="#"
-              class="text-xs text-indigo-600 transition duration-500 ease-in-out"
+              className="font-semibold text-lg hover:text-indigo-600 transition duration-500 ease-in-out inline-block mb-2"
             >
-              Mehdi Ahmadi
-            </a>{' '}
-            | in{' '}
-            <a
-              href="#"
-              class="text-xs text-indigo-600 transition duration-500 ease-in-out"
-            >
-              Cooking
+              {post.name}
             </a>
-            ,{' '}
-            <a
-              href="#"
-              class="text-xs text-indigo-600 transition duration-500 ease-in-out"
-            >
-              Recipe
-            </a>
-          </p>
+            <p className="text-gray-500 text-sm">{post.description}</p>
+            <p className="mt-5 text-gray-600 text-xs">
+              By
+              <a
+                href="#"
+                className="text-xs text-indigo-600 transition duration-500 ease-in-out"
+              >
+                {post.user.name}
+              </a>
+            </p>
+            <p className="text-gray-600 text-xs">
+              Website
+              <a href={post.website} className="text-indigo-600">
+                {post.website}
+              </a>
+            </p>
+            <p className="text-gray-600 text-xs">Earning: {post.earning}</p>
+            <p className="text-gray-600 text-xs">Location: {post.location}</p>
+            <p className="text-gray-600 text-xs">Feedback: {post.feedback}</p>
+            <p className="text-gray-600 text-xs">Status: {post.status}</p>
+          </div>
         </div>
-      </div>
-      
+      ))}
     </div>
   );
 }
