@@ -2,7 +2,7 @@ const express = require('express');
 const experienceRoutes = express.Router();
 const checkAuth = require('../../middlewares/authMiddleware');
 
-experienceRoutes.use(checkAuth);
+// experienceRoutes.use(checkAuth);
 
 const addExperince = require('../../controllers/experience/addExperience.controller');
 const getAllExperiences = require('../../controllers/experience/getAllExperience.controller');

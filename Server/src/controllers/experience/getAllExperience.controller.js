@@ -2,7 +2,7 @@ const Experience = require('../../models/Experience.schema');
 
 const getAllExperiences = async (req, res) => {
   try {
-    const experience = await Experience.find();
+    const experience = await Experience.find().populate('user');
     if (!experience) {
       return res.status(400).json({ message: 'No Experience are found' });
     }
