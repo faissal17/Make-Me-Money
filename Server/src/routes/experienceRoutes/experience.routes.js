@@ -1,6 +1,6 @@
 const express = require('express');
 const experienceRoutes = express.Router();
-const checkAuth = require('../../middlewares/authMiddleware');
+const {checkAuth} = require('../../middlewares/authMiddleware');
 
 // experienceRoutes.use(checkAuth);
 
