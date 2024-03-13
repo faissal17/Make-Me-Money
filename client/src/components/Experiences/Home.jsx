@@ -6,11 +6,11 @@ function Home() {
   return (
     <React.Fragment>
       <ExperienceNavbar />
-      <div className="flex justify-start">
+      <div className="absolute top-20 w-full">
         <ProfileInfo />
-        <div className="flex justify-center items-center">
-          <Post />
-        </div>
+      </div>
+      <div className="justify-center items-center">
+        <Post />
       </div>
     </React.Fragment>
   );

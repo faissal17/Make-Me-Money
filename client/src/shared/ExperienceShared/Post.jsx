@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getAllExp } from '../../Api/Experience.api';
-
+import { Link } from 'react-router-dom';
+import ExpPopUp from './ExpPopUp';
 function Post() {
   const [posts, setPosts] = useState([]);
 
@@ -20,7 +21,7 @@ function Post() {
       {posts.map((post) => (
         <div
           key={post._id}
-          className="rounded overflow-hidden flex flex-col max-w-xl mx-auto"
+          className="rounded-2xl overflow-hidden flex flex-col max-w-xl mx-auto"
         >
           <a href="#">
             <img
@@ -29,7 +30,7 @@ function Post() {
               alt="Sunset in the mountains"
             />
           </a>
-          <div className="relative -mt-16 px-10 pt-5 pb-16 bg-white m-10">
+          <div className="relative -mt-16 px-10 pt-5 pb-16 bg-white m-10 rounded-2xl">
             <a
               href="#"
               className="font-semibold text-lg hover:text-indigo-600 transition duration-500 ease-in-out inline-block mb-2"
@@ -38,17 +39,17 @@ function Post() {
             </a>
             <p className="text-gray-500 text-sm">{post.description}</p>
             <p className="mt-5 text-gray-600 text-xs">
-              By
+              Created By
               <a
                 href="#"
-                className="text-xs text-indigo-600 transition duration-500 ease-in-out"
+                className="text-xs text-indigo-600 transition duration-500 ease-in-out ml-1"
               >
                 {post.user.name}
               </a>
             </p>
             <p className="text-gray-600 text-xs">
               Website
-              <a href={post.website} className="text-indigo-600">
+              <a href={post.website} className="text-indigo-600 ml-1">
                 {post.website}
               </a>
             </p>
@@ -56,6 +57,7 @@ function Post() {
             <p className="text-gray-600 text-xs">Location: {post.location}</p>
             <p className="text-gray-600 text-xs">Feedback: {post.feedback}</p>
             <p className="text-gray-600 text-xs">Status: {post.status}</p>
+            <p className="text-gray-600 text-xs">{post.tags.join(', ')}</p>
           </div>
         </div>
       ))}

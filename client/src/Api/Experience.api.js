@@ -19,3 +19,16 @@ export const getAllExp = async () => {
     throw error;
   }
 };
+export const createExp = async () => {
+  try {
+    const response = await ExpApi.post('experince');
+    if (response.status === 200) {
+      return response.data;
+    } else {
+      throw new Error('failed to fetch');
+    }
+  } catch (error) {
+    console.error('Error frtching in:', error);
+    throw error;
+  }
+};

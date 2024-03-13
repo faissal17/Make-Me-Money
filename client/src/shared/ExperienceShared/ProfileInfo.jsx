@@ -3,7 +3,7 @@ import image from '../../assets/images/img.jpg';
 
 function ProfileInfo() {
   return (
-    <div className="flex flex-wrap items-center justify-center sm:w-full md:w-1/2 lg:w-1/3 p-14">
+    <div className="flex flex-wrap items-center justify-center sm:w-full md:w-1/2 lg:w-1/3 p-16">
       <div className="container bg-white shadow-lg transform duration-200 easy-in-out">
         <div className="flex justify-center px-5 -mt-12">
           <img className="h-32 w-32 bg-white p-2 rounded-full" src={image} alt="Profile" />
