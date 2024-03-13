@@ -11,7 +11,7 @@ const experienceSchema = new mongoose.Schema({
   image: {
     type: String,
     default:
-      'https://res.cloudinary.com/dmhcnhtng/image/upload/v1643044376/avatars/default_pic_jeaybr.png',
+      'https://res.cloudinary.com/dx6vl9jdq/image/upload/v1710327514/img_emgaqu.jpg',
   },
   website: {
     type: String,
