@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { createExp } from '../../Api/Experience.api';
 import { useParams } from 'react-router-dom';
 
-function ExpPopUp() {
+function CreateExpPop() {
   const { id } = useParams();
   const [isModalOpen, setModalOpen] = useState(false);
   const [formData, setFormData] = useState({
@@ -216,4 +216,4 @@ function ExpPopUp() {
     </div>
   );
 }
-export default ExpPopUp;
+export default CreateExpPop;

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { getAllExp, deleteExperiences } from '../../Api/Experience.api';
 import Swal from 'sweetalert2';
+import CreateExpPopUp from './CreateExpPopUp';
+import UpdateExpPopUp from './UpdateExpPopUp';
 
 function Post({ button }) {
   const [posts, setPosts] = useState([]);
@@ -21,9 +23,7 @@ function Post({ button }) {
       const response = await deleteExperiences(ExpId);
       console.log(response);
       if (response) {
-        setPosts((pervPost) =>
-          pervPost.filter((ExpId) => ExpId._id !== ExpId),
-        );
+        setPosts((pervPost) => pervPost.filter((ExpId) => ExpId._id !== ExpId));
         Swal.fire('Deleted!', 'Experince has been deleted.', 'success');
       } else {
         Swal.fire('Error', 'Failed to delete the Experince.', 'error');
@@ -40,6 +40,9 @@ function Post({ button }) {
 
   return (
     <div className="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
+      <div className="flex justify-center items-center">
+        <CreateExpPopUp />
+      </div>
       {posts.map((post) => (
         <div
           key={post._id}
@@ -82,9 +85,7 @@ function Post({ button }) {
             <p className="text-gray-600 text-xs">{post.tags.join(', ')}</p>
             {button && (
               <div className="flex mt-4">
-                <button className="bg-blue-500 text-white px-4 py-2 mr-2 rounded">
-                  Update
-                </button>
+                <UpdateExpPopUp />
                 <button
                   onClick={() => handleDelete(post._id)}
                   className="bg-red-500 text-white px-4 py-2 rounded"

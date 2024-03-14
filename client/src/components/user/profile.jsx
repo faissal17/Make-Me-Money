@@ -3,7 +3,6 @@ import ProfileInfo from '../../shared/ExperienceShared/ProfileInfo';
 import { useParams } from 'react-router-dom';
 import { getUserProbleme } from '../../Api/probleme.api';
 import { getUserExperiences } from '../../Api/Experience.api';
-import ExpPopUp from '../../shared/ExperienceShared/ExpPopUp';
 import Post from '../../shared/ExperienceShared/Post';
 import Probleme from '../../shared/problemeShared/probleme';
 function Profile() {
