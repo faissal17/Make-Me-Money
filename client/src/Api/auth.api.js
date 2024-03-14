@@ -4,6 +4,7 @@ import Cookies from 'js-cookie';
 const AuthApi = axois.create({
   baseURL: 'http://localhost:3000/api/auth/',
   timeout: 5000,
+  withCredentials:true
 });
 
 export const login = async (email, password) => {
@@ -14,6 +15,9 @@ export const login = async (email, password) => {
     });
 
     if (response.status === 200) {
+      const token = response.data.token;
+      Cookies.set('token', token);
+      console.log(token);
       return response.data;
     } else {
       throw new Error('Login failed');

@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { createExp } from '../../Api/Experience.api';
+import { useParams } from 'react-router-dom';
 
 function ExpPopUp() {
+  const { id } = useParams();
   const [isModalOpen, setModalOpen] = useState(false);
   const [formData, setFormData] = useState({
+    _id: id,
     name: '',
     description: '',
-    image: '',
+    image: null,
     website: '',
     earning: '',
     location: '',
@@ -81,7 +84,7 @@ function ExpPopUp() {
                 >
                   Description
                 </label>
-                <input
+                <textarea
                   className="border rounded w-full py-2 px-3"
                   type="text"
                   id="description"
@@ -117,7 +120,7 @@ function ExpPopUp() {
                 </label>
                 <input
                   className="border rounded w-full py-2 px-3"
-                  type="text"
+                  type="number"
                   id="earning"
                   name="earning"
                   value={formData.earning}
@@ -159,26 +162,19 @@ function ExpPopUp() {
                   required
                 />
               </div>
-              <div className="mb-4">
-                <label
-                  className="block text-gray-700 text-sm font-bold mb-2"
-                  htmlFor="status"
-                >
-                  Status
-                </label>
-                <select
-                  className="border rounded w-full py-2 px-3"
-                  id="status"
-                  name="status"
-                  value={formData.status}
-                  onChange={handleChange}
-                  required
-                >
-                  <option value="excellent">Excellent</option>
-                  <option value="good">Good</option>
-                  <option value="not-recommended">Not Recommended</option>
-                </select>
-              </div>
+              <select
+                className="border rounded w-full py-2 px-3"
+                id="status"
+                name="status"
+                value={formData.status}
+                onChange={handleChange}
+                required
+              >
+                <option value="">Select Status</option>
+                <option value="excellent">Excellent</option>
+                <option value="good">Good</option>
+                <option value="not-recommended">Not Recommended</option>
+              </select>
 
               <div className="mb-4">
                 <label
