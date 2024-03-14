@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const deletedExperience = async (req, res) => {
   try {
     const { id } = req.params;
-    const token = req.headers.authorization.split(' ')[1];
+    const token = req.cookies.token;
     const decodedToken = jwt.verify(token, process.env.SECRET_KEY);
 
     const findExperience = await Experience.findById(id);
