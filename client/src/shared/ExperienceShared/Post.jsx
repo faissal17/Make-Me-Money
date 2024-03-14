@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { getAllExp } from '../../Api/Experience.api';
-import { Link } from 'react-router-dom';
-import ExpPopUp from './ExpPopUp';
-function Post() {
+import { getAllExp, deleteExperiences } from '../../Api/Experience.api';
+import Swal from 'sweetalert2';
+
+function Post({ button }) {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -15,6 +15,28 @@ function Post() {
         console.error('Error fetching data:', error);
       });
   }, []);
+
+  const handleDelete = async (ExpId) => {
+    try {
+      const response = await deleteExperiences(ExpId);
+      console.log(response);
+      if (response) {
+        setPosts((pervPost) =>
+          pervPost.filter((ExpId) => ExpId._id !== ExpId),
+        );
+        Swal.fire('Deleted!', 'Experince has been deleted.', 'success');
+      } else {
+        Swal.fire('Error', 'Failed to delete the Experince.', 'error');
+      }
+    } catch (error) {
+      console.error('Error deleting Experince:', error);
+      Swal.fire(
+        'Error',
+        'An error occurred while deleting the Experince.',
+        'error',
+      );
+    }
+  };
 
   return (
     <div className="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
@@ -58,6 +80,19 @@ function Post() {
             <p className="text-gray-600 text-xs">Feedback: {post.feedback}</p>
             <p className="text-gray-600 text-xs">Status: {post.status}</p>
             <p className="text-gray-600 text-xs">{post.tags.join(', ')}</p>
+            {button && (
+              <div className="flex mt-4">
+                <button className="bg-blue-500 text-white px-4 py-2 mr-2 rounded">
+                  Update
+                </button>
+                <button
+                  onClick={() => handleDelete(post._id)}
+                  className="bg-red-500 text-white px-4 py-2 rounded"
+                >
+                  Delete
+                </button>
+              </div>
+            )}
           </div>
         </div>
       ))}
