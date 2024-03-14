@@ -60,9 +60,14 @@ class authController {
       }
       const passwordMatch = await bcryptjs.compare(password, user.password);
       if (passwordMatch) {
+        const token = jwt.sign(
+          { id: user._id, role: user.role },
+          process.env.SECRET_KEY,
+        );
         return res.status(200).json({
-          status: 'succes',
+          status: 'success',
           message: 'Login successful',
+          token: token,
         });
       } else {
         return res
@@ -74,6 +79,7 @@ class authController {
       return res.status(500).json({ message: 'server error' });
     }
   };
+
   static logout = async (req, res) => {
     res.clearCookie('token');
     res.status(201).json({ message: 'you are logged out' });
