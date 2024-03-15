@@ -7,7 +7,7 @@ dotenv.config();
 const updateExperience = async (req, res) => {
   try {
     const { id } = req.params;
-    const token = req.headers.authorization.split(' ')[1];
+    const token = req.cookies.token;
     const decodedToken = jwt.verify(token, process.env.SECRET_KEY);
 
     const {
@@ -33,6 +33,7 @@ const updateExperience = async (req, res) => {
     };
 
     const foundExperience = await Experience.findById(id);
+
 
     if (!foundExperience) {
       return res.status(404).json({ message: 'No Experience was found' });
