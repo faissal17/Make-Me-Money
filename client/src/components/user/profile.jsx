@@ -58,7 +58,7 @@ function Profile() {
             Problems
           </button>
         </div>
-        {isExperiences ? <Post button={true} /> : <Probleme />}
+        {isExperiences ? <Post  button={true} create={true} /> : <Probleme />}
       </div>
     </React.Fragment>
   );

@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { updateExp } from '../../Api/Experience.api';
+import Swal from 'sweetalert2';
 
-function UpdateExpPopUp() {
-  const { id } = useParams();
+function UpdateExpPopUp({ postId }) {
   const [isModalOpen, setModalOpen] = useState(false);
   const [formData, setFormData] = useState({
-    _id: id,
+    _id: postId,
     name: '',
     description: '',
     image: null,
@@ -23,7 +24,10 @@ function UpdateExpPopUp() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
+    setFormData((pervPost) => ({
+      ...pervPost,
+      [name]: value,
+    }));
   };
 
   const handleTagChange = (e) => {
@@ -31,17 +35,18 @@ function UpdateExpPopUp() {
     setFormData((prevData) => ({ ...prevData, tags: value.split(',') }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+    console.log('first');
     e.preventDefault();
+    try {
+      const response = await updateExp(postId, formData);
+      console.log(response);
 
-    createExp(formData)
-      .then((response) => {
-        console.log('Experience created successfully:', response);
-        toggleModal();
-      })
-      .catch((error) => {
-        console.error('Error creating experience:', error);
-      });
+      Swal.fire('Success!', 'Experience has been updated.', 'success');
+    } catch (error) {
+      console.error('Error updating Experience:', error);
+      Swal.fire('Error', 'Failed to update the Experience.', 'error');
+    }
   };
 
   return (
@@ -60,6 +65,11 @@ function UpdateExpPopUp() {
               Create New Experience
             </h2>
             <form onSubmit={handleSubmit}>
+              {/* <input
+                type="text"
+                value={postId}
+                className="border rounded w-full py-2 px-3"
+              /> */}
               <div className="mb-4">
                 <label
                   className="block text-gray-700 text-sm font-bold mb-2"
@@ -206,7 +216,7 @@ function UpdateExpPopUp() {
                   type="submit"
                   className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                 >
-                  Create
+                  Update
                 </button>
               </div>
             </form>

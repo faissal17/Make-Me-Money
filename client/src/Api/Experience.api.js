@@ -59,3 +59,17 @@ export const deleteExperiences = async (ExpId) => {
     throw error;
   }
 };
+
+export const updateExp = async (ExpId, expData) => {
+  try {
+    const response = await ExpApi.put(`experince/${ExpId}`, expData);
+    if (response.status === 200) {
+      return response.data;
+    } else {
+      throw new Error('Failed to update');
+    }
+  } catch (error) {
+    console.error('Error updating experience:', error);
+    throw error;
+  }
+};

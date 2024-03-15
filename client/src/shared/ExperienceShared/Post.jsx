@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 import CreateExpPopUp from './CreateExpPopUp';
 import UpdateExpPopUp from './UpdateExpPopUp';
 
-function Post({ button }) {
+function Post({ button, create }) {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -40,9 +40,12 @@ function Post({ button }) {
 
   return (
     <div className="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
-      <div className="flex justify-center items-center">
-        <CreateExpPopUp />
-      </div>
+      {create && (
+        <div className="flex justify-center items-center">
+          <CreateExpPopUp />
+        </div>
+      )}
+
       {posts.map((post) => (
         <div
           key={post._id}
@@ -85,7 +88,7 @@ function Post({ button }) {
             <p className="text-gray-600 text-xs">{post.tags.join(', ')}</p>
             {button && (
               <div className="flex mt-4">
-                <UpdateExpPopUp />
+                <UpdateExpPopUp postId={post._id} />
                 <button
                   onClick={() => handleDelete(post._id)}
                   className="bg-red-500 text-white px-4 py-2 rounded"
