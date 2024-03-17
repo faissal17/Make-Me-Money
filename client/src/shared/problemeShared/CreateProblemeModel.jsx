@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { createExp } from '../../Api/Experience.api';
+import { createProbleme } from '../../Api/probleme.api';
 import { useParams } from 'react-router-dom';
 
-function CreateExpPop() {
+function CreateProblemeModel() {
   const { id } = useParams();
   const [isModalOpen, setModalOpen] = useState(false);
   const [formData, setFormData] = useState({
@@ -11,8 +11,6 @@ function CreateExpPop() {
     description: '',
     image: null,
     website: '',
-    earning: '',
-    location: '',
     feedback: '',
     status: '',
     tags: [],
@@ -35,7 +33,7 @@ function CreateExpPop() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    createExp(formData)
+    createProbleme(formData)
       .then((response) => {
         console.log('Experience created successfully:', response);
         toggleModal();
@@ -114,40 +112,6 @@ function CreateExpPop() {
               <div className="mb-4">
                 <label
                   className="block text-gray-700 text-sm font-bold mb-2"
-                  htmlFor="earning"
-                >
-                  earning
-                </label>
-                <input
-                  className="border rounded w-full py-2 px-3"
-                  type="number"
-                  id="earning"
-                  name="earning"
-                  value={formData.earning}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div className="mb-4">
-                <label
-                  className="block text-gray-700 text-sm font-bold mb-2"
-                  htmlFor="location"
-                >
-                  location
-                </label>
-                <input
-                  className="border rounded w-full py-2 px-3"
-                  type="text"
-                  id="location"
-                  name="location"
-                  value={formData.location}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div className="mb-4">
-                <label
-                  className="block text-gray-700 text-sm font-bold mb-2"
                   htmlFor="feedback"
                 >
                   feedback
@@ -171,9 +135,9 @@ function CreateExpPop() {
                 required
               >
                 <option value="">Select Status</option>
-                <option value="excellent">Excellent</option>
-                <option value="good">Good</option>
-                <option value="not-recommended">Not Recommended</option>
+                <option value="it-can-wait">it can wait</option>
+                <option value="urgent">urgent</option>
+                <option value="dangerous">dangerous</option>
               </select>
 
               <div className="mb-4">
@@ -216,4 +180,5 @@ function CreateExpPop() {
     </div>
   );
 }
-export default CreateExpPop;
+
+export default CreateProblemeModel;

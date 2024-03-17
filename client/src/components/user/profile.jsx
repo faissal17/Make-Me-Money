@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { getUserProbleme } from '../../Api/probleme.api';
 import { getUserExperiences } from '../../Api/Experience.api';
 import Post from '../../shared/ExperienceShared/Post';
-import Probleme from '../../shared/problemeShared/probleme';
+import Probleme from '../../shared/problemeShared/Probleme';
 function Profile() {
   const [isExperiences, setIsExperiences] = useState(true);
 
@@ -41,7 +41,7 @@ function Profile() {
         {isExperiences ? (
           <Post button={true} create={true} />
         ) : (
-          <Probleme button={true} />
+          <Probleme button={true} create={true} />
         )}
       </div>
     </React.Fragment>

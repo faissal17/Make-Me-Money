@@ -33,3 +33,31 @@ export const getUserProbleme = async (userId) => {
     throw error;
   }
 };
+
+export const createProbleme = async (problemeData) => {
+  try {
+    const response = await problemeApi.post('probleme', problemeData);
+    if (response.status === 201) {
+      return response.data;
+    } else {
+      throw new Error('failed to fetch');
+    }
+  } catch (error) {
+    console.error('Error frtching in:', error);
+    throw error;
+  }
+};
+
+export const deleteProbleme = async (problemeId) => {
+  try {
+    const response = await problemeApi.delete(`experince/${problemeId}`);
+    if (response.status === 200) {
+      return response.data;
+    } else {
+      throw new Error('failed to fetch');
+    }
+  } catch (error) {
+    console.error('Error frtching in:', error);
+    throw error;
+  }
+};
