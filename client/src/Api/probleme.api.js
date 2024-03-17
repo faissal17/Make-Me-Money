@@ -50,7 +50,7 @@ export const createProbleme = async (problemeData) => {
 
 export const deleteProbleme = async (problemeId) => {
   try {
-    const response = await problemeApi.delete(`experince/${problemeId}`);
+    const response = await problemeApi.delete(`probleme/${problemeId}`);
     if (response.status === 200) {
       return response.data;
     } else {

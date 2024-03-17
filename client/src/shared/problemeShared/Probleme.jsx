@@ -22,8 +22,8 @@ function Probleme({ button, create }) {
       const response = await deleteProbleme(problemeId);
       console.log(response);
       if (response) {
-        setPosts((pervPost) =>
-          pervPost.filter((problemeId) => problemeId._id !== problemeId),
+        setProbleme((pervProbleme) =>
+          pervProbleme.filter((problemeId) => problemeId._id !== problemeId),
         );
         Swal.fire('Deleted!', 'probleme has been deleted.', 'success');
       } else {
