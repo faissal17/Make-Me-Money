@@ -6,27 +6,7 @@ import { getUserExperiences } from '../../Api/Experience.api';
 import Post from '../../shared/ExperienceShared/Post';
 import Probleme from '../../shared/problemeShared/probleme';
 function Profile() {
-  const { id } = useParams();
-  const [posts, setPosts] = useState([]);
   const [isExperiences, setIsExperiences] = useState(true);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        if (isExperiences) {
-          const experienceResponse = await getUserExperiences(id);
-          setPosts(experienceResponse);
-        } else {
-          const problemResponse = await getUserProbleme(id);
-          setPosts(problemResponse);
-        }
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
-  }, [id, isExperiences]);
 
   const toggleView = () => {
     setIsExperiences(!isExperiences);
@@ -58,7 +38,11 @@ function Profile() {
             Problems
           </button>
         </div>
-        {isExperiences ? <Post  button={true} create={true} /> : <Probleme />}
+        {isExperiences ? (
+          <Post button={true} create={true} />
+        ) : (
+          <Probleme button={true} />
+        )}
       </div>
     </React.Fragment>
   );
