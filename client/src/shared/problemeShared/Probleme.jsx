@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getUserProbleme } from '../../Api/probleme.api';
 import CreateProblemeModel from './CreateProblemeModel';
+import UpdateProblemeModel from './UpdateProblemeModel';
 import { deleteProbleme } from '../../Api/probleme.api';
 import Swal from 'sweetalert2';
 function Probleme({ button, create }) {
@@ -85,9 +86,7 @@ function Probleme({ button, create }) {
                 </div>
                 {button && (
                   <div className="flex mt-4 justify-between">
-                    <button className="bg-blue-500 text-white px-4 py-2 rounded">
-                      update
-                    </button>
+                    <UpdateProblemeModel problemeId={probleme._id} />
                     <button
                       onClick={() => handleDelete(probleme._id)}
                       className="bg-red-500 text-white px-4 py-2 rounded"

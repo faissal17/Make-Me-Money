@@ -61,3 +61,18 @@ export const deleteProbleme = async (problemeId) => {
     throw error;
   }
 };
+
+
+export const updateProbleme = async (problemeId, problemeData) => {
+  try {
+    const response = await problemeApi.put(`probleme/${problemeId}`, problemeData);
+    if (response.status === 200) {
+      return response.data;
+    } else {
+      throw new Error('Failed to update');
+    }
+  } catch (error) {
+    console.error('Error updating experience:', error);
+    throw error;
+  }
+};
