@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { getUserProject } from '../../Api/projectApi';
+import CreateProjectModel from './CreateProjectModel';
 
-function Project() {
+function Project({ create }) {
   const [projects, setProject] = useState([]);
 
   useEffect(() => {
@@ -16,9 +17,16 @@ function Project() {
   }, []);
   return (
     <div className="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
+      {create && (
+        <div className="flex justify-center items-center">
+          <CreateProjectModel />
+        </div>
+      )}
       {projects.length === 0 ? (
-        <div className='flex justify-center items-center h-screen'>
-          <h1 className='text-red-500'>You haven't created any projects yet.</h1>
+        <div className="flex justify-center items-center">
+          <h1 className="text-black font-bold text-2xl">
+            You haven't create any project yet
+          </h1>
         </div>
       ) : (
         projects.map((project) => (
