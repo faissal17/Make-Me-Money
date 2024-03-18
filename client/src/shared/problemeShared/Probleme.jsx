@@ -85,7 +85,7 @@ function Probleme({ button, create }) {
                   <div className="mt-1">{probleme.feedback}</div>
                 </div>
                 {button && (
-                  <div className="flex mt-4 justify-between">
+                  <div className="flex mt-4">
                     <UpdateProblemeModel problemeId={probleme._id} />
                     <button
                       onClick={() => handleDelete(probleme._id)}

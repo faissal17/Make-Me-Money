@@ -42,7 +42,7 @@ function UpdateProblemeModel({ problemeId }) {
     }
   };
   return (
-    <div className="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16 -mt-24">
+    <div className="w-auto px-1">
       <button
         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
         onClick={toggleModal}
@@ -53,9 +53,7 @@ function UpdateProblemeModel({ problemeId }) {
       {isModalOpen && (
         <div className="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 flex items-center justify-center">
           <div className="bg-white p-8 rounded-lg max-w-md w-full">
-            <h2 className="text-2xl font-semibold mb-4">
-              Create New Experience
-            </h2>
+            <h2 className="text-2xl font-semibold mb-4">update Probleme </h2>
             <form onSubmit={handleSubmit}>
               <div className="mb-4">
                 <label
