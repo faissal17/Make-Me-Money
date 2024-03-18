@@ -5,7 +5,7 @@ dotenv.config();
 const updateProbleme = async (req, res) => {
   try {
     const { id } = req.params;
-    const token = req.headers.authorization.split(' ')[1];
+    const token = req.cookies.token;
     const decodedToken = jwt.verify(token, process.env.SECRET_KEY);
     const { name, description, website, tags, feedback, status } = req.body;
 
@@ -25,7 +25,7 @@ const updateProbleme = async (req, res) => {
     }
 
     const isAuthorized =
-      foundExperience.user == decodedToken.id || decodedToken.role === 'Admin';
+    foundProbleme.user == decodedToken.id || decodedToken.role === 'Admin';
     if (isAuthorized) {
       const updatedProbleme = await Probleme.findByIdAndUpdate(
         id,

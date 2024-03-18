@@ -13,6 +13,11 @@ const problemeSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  image: {
+    type: String,
+    default:
+      'https://res.cloudinary.com/dx6vl9jdq/image/upload/v1710327514/img_emgaqu.jpg',
+  },
   date: {
     type: Date,
     default: Date.now,

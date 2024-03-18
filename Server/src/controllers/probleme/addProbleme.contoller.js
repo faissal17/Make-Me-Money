@@ -5,7 +5,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const addProbleme = async (req, res) => {
-  const token = req.headers.authorization.split(' ')[1];
+  const token = req.cookies.token;
   const decodedToken = jwt.verify(token, process.env.SECRET_KEY);
 
   const { name, description, website, tags, feedback, status } = req.body;
