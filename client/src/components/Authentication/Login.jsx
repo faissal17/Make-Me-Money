@@ -21,7 +21,7 @@ function Login() {
           text: 'Login successful',
           icon: 'success',
         }).then(() => {
-          navigate('/Home');
+          navigate('/Experience');
         });
       } catch (error) {
         Swal.fire({

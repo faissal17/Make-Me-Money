@@ -80,6 +80,7 @@ export const resetPassword = async (password, token) => {
     throw error;
   }
 };
+
 export const logout = async () => {
   try {
     const response = await AuthApi.post('/logout')

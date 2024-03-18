@@ -1,9 +1,11 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../../assets/images/Logo.png';
 import { getCurrentUser } from '../../Api/user.api';
+
+import { logout } from '../../Api/auth.api';
 
 const navigation = [
   { name: 'Experiences', to: '/Experience', current: false },
@@ -16,6 +18,8 @@ function classNames(...classes) {
 }
 
 export default function ExperienceNavbar() {
+  const redirect = useNavigate();
+
   const [user, setUser] = useState([]);
 
   useEffect(() => {
@@ -112,11 +116,7 @@ export default function ExperienceNavbar() {
                     <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">Open user menu</span>
-                      <img
-                        className="h-8 w-8 rounded-full"
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                        alt=""
-                      />
+                      <img className="h-8 w-8 rounded-full" src={user.image} />
                     </Menu.Button>
                   </div>
                   <Transition
@@ -145,6 +145,17 @@ export default function ExperienceNavbar() {
                       <Menu.Item>
                         {({ active }) => (
                           <a
+                            onClick={async () => {
+                              try {
+                                await logout();
+                                redirect('/login');
+                              } catch (error) {
+                                console.error(
+                                  'Error while logging out:',
+                                  error,
+                                );
+                              }
+                            }}
                             href="#"
                             className={classNames(
                               active ? 'bg-gray-100' : '',
