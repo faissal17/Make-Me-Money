@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import ProfileInfo from '../../shared/ExperienceShared/ProfileInfo';
-import { useParams } from 'react-router-dom';
-import { getUserProbleme } from '../../Api/probleme.api';
-import { getUserExperiences } from '../../Api/Experience.api';
+import ProfileInfo from '../../shared/global/ProfileInfo';
 import Post from '../../shared/ExperienceShared/Post';
 import Probleme from '../../shared/problemeShared/Probleme';
 function Profile() {
@@ -26,7 +23,7 @@ function Profile() {
             }`}
             onClick={toggleView}
           >
-            Experiences
+            My Experiences
           </button>
 
           <button
@@ -35,7 +32,7 @@ function Profile() {
             }`}
             onClick={toggleView}
           >
-            Problems
+            My Problems
           </button>
         </div>
         {isExperiences ? (

@@ -35,11 +35,11 @@ function CreateProblemeModel() {
 
     createProbleme(formData)
       .then((response) => {
-        console.log('Experience created successfully:', response);
+        console.log('Probleme created successfully:', response);
         toggleModal();
       })
       .catch((error) => {
-        console.error('Error creating experience:', error);
+        console.error('Error creating Probleme:', error);
       });
   };
   return (
@@ -48,15 +48,13 @@ function CreateProblemeModel() {
         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
         onClick={toggleModal}
       >
-        Create New Experience
+        Create New Probleme
       </button>
 
       {isModalOpen && (
         <div className="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 flex items-center justify-center">
           <div className="bg-white p-8 rounded-lg max-w-md w-full">
-            <h2 className="text-2xl font-semibold mb-4">
-              Create New Experience
-            </h2>
+            <h2 className="text-2xl font-semibold mb-4">Create New Probleme</h2>
             <form onSubmit={handleSubmit}>
               <div className="mb-4">
                 <label

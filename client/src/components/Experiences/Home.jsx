@@ -1,7 +1,7 @@
 import React from 'react';
-import ExperienceNavbar from '../../shared/ExperienceShared/ExperienceNavbar';
+import ExperienceNavbar from '../../shared/global/ExperienceNavbar';
 import Post from '../../shared/ExperienceShared/Post';
-import ProfileInfo from '../../shared/ExperienceShared/ProfileInfo';
+import ProfileInfo from '../../shared/global/ProfileInfo';
 function Home() {
   return (
     <React.Fragment>
