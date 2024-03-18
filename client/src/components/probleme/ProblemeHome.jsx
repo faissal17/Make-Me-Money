@@ -1,7 +1,6 @@
 import ExperienceNavbar from '../../shared/global/ExperienceNavbar';
 import React, { useEffect, useState } from 'react';
 import { getAllprobleme } from '../../Api/probleme.api';
-import ProfileInfo from '../../shared/global/ProfileInfo';
 
 function ProblemeHome() {
   const [problems, setProbleme] = useState([]);

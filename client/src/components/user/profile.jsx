@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ProfileInfo from '../../shared/global/ProfileInfo';
 import Post from '../../shared/ExperienceShared/Post';
 import Probleme from '../../shared/problemeShared/Probleme';
+import Project from '../../shared/ProjectShared/Project';
 function Profile() {
   const [isExperiences, setIsExperiences] = useState(true);
 
