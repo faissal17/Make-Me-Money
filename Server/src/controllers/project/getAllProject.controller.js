@@ -2,7 +2,7 @@ const Project = require('../../models/Project.schema');
 
 const getAllProject = async (req, res) => {
   try {
-    const project = await Project.find();
+    const project = await Project.find().populate('user');
     if (!project) {
       return res.status(400).json({ message: 'No probleme are found' });
     }

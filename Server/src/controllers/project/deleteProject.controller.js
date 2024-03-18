@@ -17,13 +17,13 @@ const deletedProject = async (req, res) => {
     }
 
     const isAuthorized =
-      findExperience.user == decodedToken.id || decodedToken.role === 'Admin';
+      findProject.user == decodedToken.id || decodedToken.role === 'Admin';
 
     if (isAuthorized) {
       const deletedProject = await Project.findByIdAndDelete(id);
 
       if (deletedProject) {
-        return res.status(404).json({ message: 'Project is deleted' });
+        return res.status(200).json({ message: 'Project is deleted' });
       }
     }
 
