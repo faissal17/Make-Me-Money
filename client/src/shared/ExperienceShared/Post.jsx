@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getAllExp, deleteExperiences } from '../../Api/Experience.api';
+import { getUserExperiences, deleteExperiences } from '../../Api/Experience.api';
 import Swal from 'sweetalert2';
 import CreateExpPopUp from './CreateExpPopUp';
 import UpdateExpPopUp from './UpdateExpPopUp';
@@ -8,7 +8,7 @@ function Post({ button, create }) {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    getAllExp()
+    getUserExperiences()
       .then((response) => {
         setPosts(response);
         console.log('Experience data:', response);
@@ -65,7 +65,7 @@ function Post({ button, create }) {
             >
               {post.name}
             </a>
-            <p className="text-gray-500 text-sm">{post.description}</p>
+            <p className="text-gray-500 text-sm truncate">{post.description}</p>
             <p className="mt-5 text-gray-600 text-xs">
               Created By
               <a

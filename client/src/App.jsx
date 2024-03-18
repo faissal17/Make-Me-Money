@@ -4,7 +4,8 @@ import Register from './components/Authentication/Register';
 import Login from './components/Authentication/Login';
 import ForgotPassword from './components/Authentication/ForgotPassword';
 import ResetPassword from './components/Authentication/ResetPassword';
-import Home from './components/Experiences/Home';
+import ExperienceHome from './components/Experiences/ExperienceHome';
+import ProblemeHome from './components/probleme/ProblemeHome';
 import profile from './components/user/profile';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
@@ -21,7 +22,10 @@ function App() {
 
           {/*Experiences Routes*/}
 
-          <Route path="/Home" Component={Home} />
+          <Route path="/Experience" Component={ExperienceHome} />
+          <Route path="/Probleme" Component={ProblemeHome} />
+
+
 
           <Route path='/profile/:id' Component={profile}/>
         </Routes>

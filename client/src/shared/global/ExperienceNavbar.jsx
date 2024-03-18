@@ -6,8 +6,8 @@ import Logo from '../../assets/images/Logo.png';
 import { getCurrentUser } from '../../Api/user.api';
 
 const navigation = [
-  { name: 'Experiences', href: '#', current: false },
-  { name: 'Problemes', href: '#', current: false },
+  { name: 'Experiences', href: '/Experience', current: false },
+  { name: 'Problemes', href: '/Probleme', current: false },
   { name: 'Projects', href: '#', current: false },
 ];
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import ProfileInfo from '../../shared/global/ProfileInfo';
 import Post from '../../shared/ExperienceShared/Post';
 import Probleme from '../../shared/problemeShared/Probleme';
