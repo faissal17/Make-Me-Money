@@ -7,6 +7,7 @@ import ResetPassword from './components/Authentication/ResetPassword';
 import ExperienceHome from './components/Experiences/ExperienceHome';
 import ProblemeHome from './components/probleme/ProblemeHome';
 import ProjectHome from './components/project/ProjectHome';
+import { PrivateRoutes } from './routes/PrivateRoutes';
 import profile from './components/user/profile';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
@@ -21,14 +22,16 @@ function App() {
           <Route path="/ForgetPassword" Component={ForgotPassword} />
           <Route path="/resetpassword" Component={ResetPassword} />
 
-          {/*Experiences Routes*/}
+          {/*Home Routes*/}
 
-          <Route path="/Experience" Component={ExperienceHome} />
-          <Route path="/Probleme" Component={ProblemeHome} />
-          <Route path="/Project" Component={ProjectHome} />
+          <Route element={<PrivateRoutes />}>
+            <Route path="/Experience" Component={ExperienceHome} />
+            <Route path="/Probleme" Component={ProblemeHome} />
+            <Route path="/Project" Component={ProjectHome} />
+            <Route path="/profile/:id" Component={profile} />
+          </Route>
 
-
-          <Route path="/profile/:id" Component={profile} />
+          {/*End Home Routes*/}
         </Routes>
       </BrowserRouter>
     </React.Fragment>
