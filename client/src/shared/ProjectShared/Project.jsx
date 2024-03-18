@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getUserProject, deleteProject } from '../../Api/projectApi';
 import UpdateProjectModel from './UpdateProjectModel';
 import CreateProjectModel from './CreateProjectModel';
+import Swal from 'sweetalert2';
 
 function Project({ create, button }) {
   const [projects, setProject] = useState([]);
@@ -22,7 +23,7 @@ function Project({ create, button }) {
       const response = await deleteProject(ProjectId);
       console.log(response);
       if (response) {
-        setProbleme((pervProject) =>
+        setProject((pervProject) =>
           pervProject.filter((ProjectId) => ProjectId._id !== ProjectId),
         );
         Swal.fire('Deleted!', 'project has been deleted.', 'success');
@@ -79,18 +80,18 @@ function Project({ create, button }) {
                 <div className="mt-1 bg-teal-200 text-teal-800 text-xs px-2 inline-block rounded-full font-semibold tracking-wide">
                   {project.montant}
                 </div>
+                {button && (
+                  <div className="flex mt-4">
+                    <UpdateProjectModel projectId={project._id} />
+                    <button
+                      onClick={() => handleDelete(project._id)}
+                      className="bg-red-500 text-white px-4 py-2 rounded"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                )}
               </div>
-              {button && (
-                <div className="flex mt-4">
-                  <UpdateProjectModel projectId={project._id} />
-                  <button
-                    onClick={() => handleDelete(project._id)}
-                    className="bg-red-500 text-white px-4 py-2 rounded"
-                  >
-                    Delete
-                  </button>
-                </div>
-              )}
             </div>
           </div>
         ))
