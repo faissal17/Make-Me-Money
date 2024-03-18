@@ -12,7 +12,7 @@ const projectSchema = new mongoose.Schema({
   image: {
     type: String,
     default:
-      'https://res.cloudinary.com/dmhcnhtng/image/upload/v1643044376/avatars/default_pic_jeaybr.png',
+      'https://res.cloudinary.com/dx6vl9jdq/image/upload/v1710768123/web_vrh40j.jpg',
   },
   montant: {
     type: Number,
