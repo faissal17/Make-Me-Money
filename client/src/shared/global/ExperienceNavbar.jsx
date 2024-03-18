@@ -1,4 +1,4 @@
-import { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { Link } from 'react-router-dom';
@@ -6,9 +6,9 @@ import Logo from '../../assets/images/Logo.png';
 import { getCurrentUser } from '../../Api/user.api';
 
 const navigation = [
-  { name: 'Experiences', href: '/Experience', current: false },
-  { name: 'Problemes', href: '/Probleme', current: false },
-  { name: 'Projects', href: '#', current: false },
+  { name: 'Experiences', to: '/Experience', current: false },
+  { name: 'Problemes', to: '/Probleme', current: false },
+  { name: 'Projects', to: '/Project', current: false },
 ];
 
 function classNames(...classes) {
@@ -55,9 +55,9 @@ export default function ExperienceNavbar() {
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
-                      <a
+                      <Link
                         key={item.name}
-                        href={item.href}
+                        to={item.to}
                         className={classNames(
                           item.current
                             ? 'bg-gray-900 text-white'
@@ -67,7 +67,7 @@ export default function ExperienceNavbar() {
                         aria-current={item.current ? 'page' : undefined}
                       >
                         {item.name}
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 </div>
@@ -167,8 +167,8 @@ export default function ExperienceNavbar() {
               {navigation.map((item) => (
                 <Disclosure.Button
                   key={item.name}
-                  as="a"
-                  href={item.href}
+                  as={Link}
+                  to={item.to}
                   className={classNames(
                     item.current
                       ? 'bg-gray-900 text-white'

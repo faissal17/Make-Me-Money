@@ -6,6 +6,7 @@ import ForgotPassword from './components/Authentication/ForgotPassword';
 import ResetPassword from './components/Authentication/ResetPassword';
 import ExperienceHome from './components/Experiences/ExperienceHome';
 import ProblemeHome from './components/probleme/ProblemeHome';
+import ProjectHome from './components/project/ProjectHome';
 import profile from './components/user/profile';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
@@ -24,10 +25,10 @@ function App() {
 
           <Route path="/Experience" Component={ExperienceHome} />
           <Route path="/Probleme" Component={ProblemeHome} />
+          <Route path="/Project" Component={ProjectHome} />
 
 
-
-          <Route path='/profile/:id' Component={profile}/>
+          <Route path="/profile/:id" Component={profile} />
         </Routes>
       </BrowserRouter>
     </React.Fragment>

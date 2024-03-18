@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { getUserProject } from '../../Api/projectApi';
+import { getAllProjects } from '../../Api/projectApi';
+import ExperienceNavbar from '../../shared/global/ExperienceNavbar';
 
-function Project() {
+function ProjectHome() {
   const [projects, setProject] = useState([]);
 
   useEffect(() => {
-    getUserProject()
+    getAllProjects()
       .then((response) => {
         setProject(response);
         console.log('projects data:', response);
@@ -14,7 +15,11 @@ function Project() {
         console.error('Error fetching data:', error);
       });
   }, []);
-  return <div>Project</div>;
+  return (
+    <React.Fragment>
+      <ExperienceNavbar />
+    </React.Fragment>
+  );
 }
 
-export default Project;
+export default ProjectHome;
