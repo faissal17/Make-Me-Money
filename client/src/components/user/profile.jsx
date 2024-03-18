@@ -65,7 +65,7 @@ function Profile() {
 
         {isExperiences && <Post button={true} create={true} />}
         {isProblems && <Probleme button={true} create={true} />}
-        {isProjects && <Project create={true} />}
+        {isProjects && <Project create={true} button={true} />}
       </div>
     </React.Fragment>
   );

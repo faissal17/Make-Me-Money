@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { createProject } from '../../Api/projectApi';
-import { useParams } from 'react-router-dom';
-function CreateProjectModel() {
-  const { id } = useParams();
+import React, { useState } from 'react';
+import { updateProject } from '../../Api/projectApi';
+import Swal from 'sweetalert2';
+function UpdateProjectModel({ projectId }) {
   const [isModalOpen, setModalOpen] = useState(false);
   const [formData, setFormData] = useState({
-    _id: id,
+    _id: projectId,
     name: '',
     description: '',
     image: null,
@@ -22,17 +21,18 @@ function CreateProjectModel() {
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+    console.log('first');
     e.preventDefault();
+    try {
+      const response = await updateProject(projectId, formData);
+      console.log(response);
 
-    createProject(formData)
-      .then((response) => {
-        console.log('project created successfully:', response);
-        toggleModal();
-      })
-      .catch((error) => {
-        console.error('Error creating project:', error);
-      });
+      Swal.fire('Success!', 'project has been updated.', 'success');
+    } catch (error) {
+      console.error('Error updating project:', error);
+      Swal.fire('Error', 'Failed to update the project.', 'error');
+    }
   };
   return (
     <div className="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16 -mt-24">
@@ -40,13 +40,13 @@ function CreateProjectModel() {
         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
         onClick={toggleModal}
       >
-        Create New project
+        Update Project
       </button>
 
       {isModalOpen && (
         <div className="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 flex items-center justify-center">
           <div className="bg-white p-8 rounded-lg max-w-md w-full">
-            <h2 className="text-2xl font-semibold mb-4">Create New Project</h2>
+            <h2 className="text-2xl font-semibold mb-4">Update project</h2>
             <form onSubmit={handleSubmit}>
               <div className="mb-4">
                 <label
@@ -136,4 +136,4 @@ function CreateProjectModel() {
   );
 }
 
-export default CreateProjectModel;
+export default UpdateProjectModel;

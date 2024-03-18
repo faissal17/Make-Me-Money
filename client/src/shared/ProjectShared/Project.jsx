@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { getUserProject } from '../../Api/projectApi';
+import { getUserProject, deleteProject } from '../../Api/projectApi';
+import UpdateProjectModel from './UpdateProjectModel';
 import CreateProjectModel from './CreateProjectModel';
 
-function Project({ create }) {
+function Project({ create, button }) {
   const [projects, setProject] = useState([]);
 
   useEffect(() => {
@@ -15,6 +16,28 @@ function Project({ create }) {
         console.error('Error fetching data:', error);
       });
   }, []);
+
+  const handleDelete = async (ProjectId) => {
+    try {
+      const response = await deleteProject(ProjectId);
+      console.log(response);
+      if (response) {
+        setProbleme((pervProject) =>
+          pervProject.filter((ProjectId) => ProjectId._id !== ProjectId),
+        );
+        Swal.fire('Deleted!', 'project has been deleted.', 'success');
+      } else {
+        Swal.fire('Error', 'Failed to delete the project.', 'error');
+      }
+    } catch (error) {
+      console.error('Error deleting project:', error);
+      Swal.fire(
+        'Error',
+        'An error occurred while deleting the project.',
+        'error',
+      );
+    }
+  };
   return (
     <div className="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
       {create && (
@@ -57,6 +80,17 @@ function Project({ create }) {
                   {project.montant}
                 </div>
               </div>
+              {button && (
+                <div className="flex mt-4">
+                  <UpdateProjectModel projectId={project._id} />
+                  <button
+                    onClick={() => handleDelete(project._id)}
+                    className="bg-red-500 text-white px-4 py-2 rounded"
+                  >
+                    Delete
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         ))
