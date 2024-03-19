@@ -1,13 +1,14 @@
 const mongoose = require('mongoose');
 
 const commentSchema = new mongoose.Schema({
-  liked: {
-    type: Boolean,
-    default: false,
+  content: {
+    type: String,
+    required: true,
   },
-  disliked: {
-    type: Boolean,
-    default: false,
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    default: null,
   },
 });
 

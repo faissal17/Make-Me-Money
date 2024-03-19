@@ -9,6 +9,7 @@ const ActiveEmail = require('./src/routes/authenticationRoutes/ActiveEmail');
 const experienceRoutes = require('./src/routes/experienceRoutes/experience.routes');
 const problemeRoutes = require('./src/routes/problemeRoutes/probleme.routes');
 const projectRoutes = require('./src/routes/projectRoutes/project.routes');
+const commentRoutes = require('./src/routes/commentRoutes/comment.routes');
 const usersRoutes = require('./src/routes/userRoutes/user.routes');
 
 const cookieParser = require('cookie-parser');
@@ -41,6 +42,8 @@ app.use('/probleme', problemeRoutes);
 app.use('/project', projectRoutes);
 
 app.use('/user', usersRoutes);
+
+app.use('/comment', commentRoutes);
 
 app.get('/', (req, res) => {
   res.send('hey');
