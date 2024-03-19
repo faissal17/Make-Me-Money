@@ -1,11 +1,44 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getExpById } from '../../Api/Experience.api';
-
+import { addComment, getComment } from '../../Api/Comment.api';
 function ArticleInfo() {
   const { id } = useParams();
   console.log(id);
   const [experience, setExperience] = useState(null);
+  const [comment, setComment] = useState([]);
+  const [formData, setFormData] = useState({
+    _id: '',
+    content: '',
+  });
+
+  useEffect(() => {
+    getComment()
+      .then((response) => {
+        setComment(response);
+        console.log('comment data:', response);
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    addComment(formData,id)
+      .then((response) => {
+        console.log('comment created successfully:', response);
+      })
+      .catch((error) => {
+        console.error('Error creating comment:', error);
+      });
+  };
 
   useEffect(() => {
     getExpById(id)
@@ -79,12 +112,16 @@ function ArticleInfo() {
                   {new Date(experience.date).toLocaleDateString()}
                 </p>
               </div>
-              <form>
+              <form onSubmit={handleSubmit}>
                 <div className="mt-6">
                   <textarea
                     className="w-full px-4 py-2 text-base border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
                     placeholder="Add your comment..."
                     required
+                    id="content"
+                    name="content"
+                    value={formData.content}
+                    onChange={handleChange}
                   ></textarea>
                 </div>
                 <div className="mt-6">
