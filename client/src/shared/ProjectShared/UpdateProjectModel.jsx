@@ -35,12 +35,12 @@ function UpdateProjectModel({ projectId }) {
     }
   };
   return (
-    <div className="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16 -mt-24">
+    <div className="w-auto px-1">
       <button
         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
         onClick={toggleModal}
       >
-        Update Project
+        Update
       </button>
 
       {isModalOpen && (

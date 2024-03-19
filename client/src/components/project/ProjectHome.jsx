@@ -42,7 +42,7 @@ function ProjectHome() {
                     <span className="bg-teal-200 text-md px-3 inline-block rounded-full uppercase font-semibold tracking-wide">
                       {project.user.name}
                     </span>
-                    <div className="bg-red-400 text-md px-3 inline-block rounded-full uppercase font-semibold tracking-wide">
+                    <div className="bg-blue-400 text-md px-3 inline-block rounded-full uppercase font-semibold tracking-wide">
                       {project.status}
                     </div>
                   </div>
@@ -51,7 +51,7 @@ function ProjectHome() {
                   </h4>
                   <div className="mt-1 truncate">{project.description}</div>
                   <div className="mt-1 bg-teal-200 text-teal-800 text-xs px-2 inline-block rounded-full font-semibold tracking-wide">
-                    {project.montant}
+                    {project.montant}$
                   </div>
                 </div>
               </div>

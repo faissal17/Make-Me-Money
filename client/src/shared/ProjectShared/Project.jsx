@@ -78,7 +78,7 @@ function Project({ create, button }) {
                 </h4>
                 <div className="mt-1 truncate">{project.description}</div>
                 <div className="mt-1 bg-teal-200 text-teal-800 text-xs px-2 inline-block rounded-full font-semibold tracking-wide">
-                  {project.montant}
+                  {project.montant}$
                 </div>
                 {button && (
                   <div className="flex mt-4">

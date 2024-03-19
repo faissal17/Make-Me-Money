@@ -2,6 +2,7 @@ import ExperienceNavbar from '../../shared/global/ExperienceNavbar';
 import React, { useEffect, useState } from 'react';
 import { getAllExp } from '../../Api/Experience.api';
 import ProfileInfo from '../../shared/global/ProfileInfo';
+import MyInfo from '../../shared/global/MyInfo';
 function ExperienceHome() {
   const [experiences, setExperiences] = useState([]);
 
@@ -78,7 +79,7 @@ function ExperienceHome() {
               </div>
             </div>
           ))}
-        </div>{' '}
+        </div>
       </div>
     </React.Fragment>
   );
