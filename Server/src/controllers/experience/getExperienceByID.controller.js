@@ -3,7 +3,7 @@ const Experience = require('../../models/Experience.schema');
 const getExperienceByID = async (req, res) => {
   const { id } = req.params;
   try {
-    const experienceByID = await Experience.findById(id);
+    const experienceByID = await Experience.findById(id).populate('user');
     if (!experienceByID) {
       return res.status(404).json({ message: 'No Experience was found' });
     }
