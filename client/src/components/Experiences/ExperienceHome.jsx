@@ -1,5 +1,6 @@
 import ExperienceNavbar from '../../shared/global/ExperienceNavbar';
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { getAllExp } from '../../Api/Experience.api';
 import ProfileInfo from '../../shared/global/ProfileInfo';
 import MyInfo from '../../shared/global/MyInfo';
@@ -29,20 +30,23 @@ function ExperienceHome() {
               key={experience._id}
               className="rounded-2xl overflow-hidden flex flex-col max-w-xl mx-auto"
             >
-              <a href="#">
-                <img
-                  className="w-full h-96 object-cover"
-                  src={experience.image}
-                  alt="Sunset in the mountains"
-                />
-              </a>
+              <img
+                className="w-full h-96 object-cover"
+                src={experience.image}
+                alt="Sunset in the mountains"
+              />
               <div className="relative -mt-16 px-10 pt-5 pb-16 bg-white m-10 rounded-2xl">
-                <a
-                  href="#"
-                  className="font-semibold text-lg hover:text-indigo-600 transition duration-500 ease-in-out inline-block mb-2"
+                <Link
+                  to={{
+                    pathname: `/info/${experience._id}`,
+                    state: { experience },
+                  }}
+                  className="font-semibold text-lg hover:text-indigo-600
+             transition duration-500 ease-in-out inline-block mb-2"
                 >
                   {experience.name}
-                </a>
+                </Link>
+
                 <p className="text-gray-500 text-sm truncate">
                   {experience.description}
                 </p>

@@ -73,3 +73,17 @@ export const updateExp = async (ExpId, expData) => {
     throw error;
   }
 };
+
+export const getExpById = async (ExpId) => {
+  try {
+    const response = await ExpApi.get(`experince/${ExpId}`);
+    if (response.status === 200) {
+      return response.data;
+    } else {
+      throw new Error('Failed to update');
+    }
+  } catch (error) {
+    console.error('Error updating experience:', error);
+    throw error;
+  }
+};

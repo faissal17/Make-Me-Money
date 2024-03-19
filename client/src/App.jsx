@@ -7,6 +7,7 @@ import ResetPassword from './components/Authentication/ResetPassword';
 import ExperienceHome from './components/Experiences/ExperienceHome';
 import ProblemeHome from './components/probleme/ProblemeHome';
 import ProjectHome from './components/project/ProjectHome';
+import ArticleInfo from './shared/global/ArticleInfo';
 import { PrivateRoutes } from './routes/PrivateRoutes';
 import profile from './components/user/profile';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -32,6 +33,7 @@ function App() {
           </Route>
 
           {/*End Home Routes*/}
+          <Route path="/info/:id" Component={ArticleInfo} />
         </Routes>
       </BrowserRouter>
     </React.Fragment>
