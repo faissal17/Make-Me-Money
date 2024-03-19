@@ -22,7 +22,7 @@ export const addComment = async (commentData, commentId) => {
 
 export const getComment = async () => {
   try {
-    const response = await commentApi.get(`comments`);
+    const response = await commentApi.get('comment');
     if (response.status === 201) {
       return response.data;
     } else {

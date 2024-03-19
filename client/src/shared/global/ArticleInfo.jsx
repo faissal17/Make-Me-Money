@@ -31,7 +31,7 @@ function ArticleInfo() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    addComment(formData,id)
+    addComment(formData, id)
       .then((response) => {
         console.log('comment created successfully:', response);
       })
@@ -111,6 +111,19 @@ function ArticleInfo() {
                   <strong>Date:</strong>{' '}
                   {new Date(experience.date).toLocaleDateString()}
                 </p>
+                <p className="text-base leading-8 my-5">
+                  {experience.comments.content}
+                </p>
+                <hr />
+                <h2 className='text-black font-bold text-lg'>Comments Section</h2>
+                <div>
+                  {experience.comments.map((comment, index) => (
+                    <div key={index} className="my-4 flex ">
+                      <img className='w-9 h-9 rounded-full' src={experience.user.image} />
+                      <p className="text-base leading-8 ml-3">{comment.content}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
               <form onSubmit={handleSubmit}>
                 <div className="mt-6">
