@@ -44,11 +44,10 @@ const experienceSchema = new mongoose.Schema({
     ref: 'Like',
     default: null,
   },
-  comment: {
+  comments: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Comment',
-    default: null,
-  },
+  }],
   status: {
     type: String,
     enum: ['excellent', 'good', 'not-recommended'],
