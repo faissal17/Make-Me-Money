@@ -27,20 +27,20 @@ function ArticleInfo() {
       {experience && (
         <div>
           <div
-            className="bg-cover h-64 text-center overflow-hidden"
+            className="bg-cover h-64 text-center overflow-hidden rounded-3xl"
             style={{
-              height: '450px',
+              height: '500px',
               backgroundImage: `url('${experience.image}')`,
             }}
           ></div>
           <div className="max-w-2xl mx-auto">
-            <div className="mt-3 bg-white rounded-b lg:rounded-b-none lg:rounded-r flex flex-col justify-between leading-normal">
+            <div className="-mt-36 bg-gray-100 rounded-b lg:rounded-b-none lg:rounded-r flex flex-col justify-between leading-normal p-10">
               <div>
                 <h1 className="text-gray-900 font-bold text-3xl mb-2">
                   {experience.name}
                 </h1>
                 <p className="text-base leading-8 my-5">
-                  <strong>Description:</strong> {experience.description}
+                  {experience.description}
                 </p>
                 <p className="text-base leading-8 my-5">
                   <strong>Website:</strong>{' '}
@@ -52,7 +52,7 @@ function ArticleInfo() {
                   </a>
                 </p>
                 <p className="text-base leading-8 my-5">
-                  <strong>Earning:</strong> {experience.earning}
+                  <strong>Earning:</strong> {experience.earning} Per day
                 </p>
                 <p className="text-base leading-8 my-5">
                   <strong>Tags:</strong>{' '}
@@ -79,6 +79,23 @@ function ArticleInfo() {
                   {new Date(experience.date).toLocaleDateString()}
                 </p>
               </div>
+              <form>
+                <div className="mt-6">
+                  <textarea
+                    className="w-full px-4 py-2 text-base border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
+                    placeholder="Add your comment..."
+                    required
+                  ></textarea>
+                </div>
+                <div className="mt-6">
+                  <button
+                    type="submit"
+                    className="py-2 px-4 bg-indigo-600 hover:bg-indigo-700 text-white rounded-md focus:outline-none focus:bg-indigo-700"
+                  >
+                    Add Comment
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
