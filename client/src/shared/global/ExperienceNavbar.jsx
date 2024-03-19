@@ -54,7 +54,7 @@ export default function ExperienceNavbar() {
 
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
-                  <img className="h-14 w-24" src={Logo} alt="Your Company" />
+                  <img className="h-14 w-22" src={Logo} />
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">

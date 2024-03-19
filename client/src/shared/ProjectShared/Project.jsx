@@ -85,7 +85,7 @@ function Project({ create, button }) {
                     <UpdateProjectModel projectId={project._id} />
                     <button
                       onClick={() => handleDelete(project._id)}
-                      className="bg-red-500 text-white px-4 py-2 rounded"
+                      className="bg-red-500 text-white font-bold px-4 py-2 rounded hover:bg-red-700"
                     >
                       Delete
                     </button>

@@ -12,7 +12,7 @@ function Navbar() {
 
   return (
     <header className="flex justify-between">
-      <img className="h-22 w-40" src={Logo} />
+      <img className="h-16 w-22" src={Logo} />
       <nav ref={navRef}>
         <a href="/#">Home</a>
         <a href="/#">Service</a>
