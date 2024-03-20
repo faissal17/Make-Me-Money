@@ -36,7 +36,11 @@ export const getUserProbleme = async (userId) => {
 
 export const createProbleme = async (problemeData) => {
   try {
-    const response = await problemeApi.post('probleme', problemeData);
+    const response = await problemeApi.post('probleme', problemeData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
     if (response.status === 201) {
       return response.data;
     } else {
@@ -62,10 +66,17 @@ export const deleteProbleme = async (problemeId) => {
   }
 };
 
-
 export const updateProbleme = async (problemeId, problemeData) => {
   try {
-    const response = await problemeApi.put(`probleme/${problemeId}`, problemeData);
+    const response = await problemeApi.put(
+      `probleme/${problemeId}`,
+      problemeData,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      },
+    );
     if (response.status === 200) {
       return response.data;
     } else {
