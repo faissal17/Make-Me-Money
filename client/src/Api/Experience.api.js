@@ -34,14 +34,18 @@ export const getUserExperiences = async (userId) => {
 };
 export const createExp = async (expData) => {
   try {
-    const response = await ExpApi.post('experince', expData);
+    const response = await ExpApi.post('experince', expData, {
+      headers: {
+        'Content-Type': 'multipart/form-data' // Set Content-Type to multipart/form-data
+      }
+    });
     if (response.status === 201) {
       return response.data;
     } else {
-      throw new Error('failed to fetch');
+      throw new Error('Failed to fetch');
     }
   } catch (error) {
-    console.error('Error frtching in:', error);
+    console.error('Error fetching:', error);
     throw error;
   }
 };

@@ -6,6 +6,7 @@ import {
 import Swal from 'sweetalert2';
 import CreateExpPopUp from './CreateExpPopUp';
 import UpdateExpPopUp from './UpdateExpPopUp';
+import { Link } from 'react-router-dom';
 
 function Post({ button, create }) {
   const [posts, setPosts] = useState([]);
@@ -68,12 +69,17 @@ function Post({ button, create }) {
               />
             </a>
             <div className="relative -mt-16 px-10 pt-5 pb-16 bg-white m-10 rounded-2xl">
-              <a
-                href="#"
-                className="font-semibold text-lg hover:text-indigo-600 transition duration-500 ease-in-out inline-block mb-2"
+              <Link
+                to={{
+                  pathname: `/info/${post._id}`,
+                  state: { post },
+                }}
+                className="font-semibold text-lg hover:text-indigo-600
+             transition duration-500 ease-in-out inline-block mb-2"
               >
                 {post.name}
-              </a>
+              </Link>
+
               <p className="text-gray-500 text-sm truncate">
                 {post.description}
               </p>

@@ -5,11 +5,11 @@ import { useParams } from 'react-router-dom';
 function CreateExpPop() {
   const { id } = useParams();
   const [isModalOpen, setModalOpen] = useState(false);
+  const [image, setImage] = useState([]);
   const [formData, setFormData] = useState({
     _id: id,
     name: '',
     description: '',
-    image: null,
     website: '',
     earning: '',
     location: '',
@@ -29,20 +29,46 @@ function CreateExpPop() {
 
   const handleTagChange = (e) => {
     const { value } = e.target;
-    setFormData((prevData) => ({ ...prevData, tags: value.split(',') }));
+    if (value === '') {
+      setFormData((prevData) => ({ ...prevData, tags: [] }));
+    } else {
+      setFormData((prevData) => ({ ...prevData, tags: value.split(',') }));
+    }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setImage(file)
+    console.log(file);
+  };
 
-    createExp(formData)
-      .then((response) => {
-        console.log('Experience created successfully:', response);
-        toggleModal();
-      })
-      .catch((error) => {
-        console.error('Error creating experience:', error);
-      });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(formData);
+
+    if(!image){
+      alert("Please select image");
+    }
+  
+    const formDataa = new FormData();
+    formDataa.append('name', formData.name);
+    formDataa.append('description', formData.description);
+    formDataa.append('image', image);
+    formDataa.append('website', formData.website);
+    formDataa.append('earning', formData.earning);
+    formDataa.append('location', formData.location);
+    formDataa.append('feedback', formData.feedback);
+    formDataa.append('status', formData.status);
+    formDataa.append('tags', formData.tags.join(','));
+  
+    try {
+      const response = await createExp(formDataa);
+      console.log('Experience created successfully:', response);
+      toggleModal();
+    } catch (error) {
+      console.error('Error creating experience:', error);
+    }
   };
   return (
     <div className="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16 -mt-24">
@@ -76,6 +102,23 @@ function CreateExpPop() {
                   onChange={handleChange}
                   required
                 />
+              </div>
+              <div className="mb-4">
+                <label
+                  className="block text-gray-700 text-sm font-bold mb-2"
+                  htmlFor="image"
+                >
+                  Image
+                </label>
+                <input
+                  className="border rounded w-full py-2 px-3"
+                  type="file"
+                  id="image"
+                  name="image"
+                  onChange={handleImageChange}
+                  required
+                />
+                <img className="img-fluid" src={image} alt="" />
               </div>
               <div className="mb-4">
                 <label

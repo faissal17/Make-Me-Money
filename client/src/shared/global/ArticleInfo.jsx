@@ -12,25 +12,12 @@ function ArticleInfo() {
     content: '',
   });
 
-  useEffect(() => {
-    getComment()
-      .then((response) => {
-        setComment(response);
-        console.log('comment data:', response);
-      })
-      .catch((error) => {
-        console.error('Error fetching data:', error);
-      });
-  }, []);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-
     addComment(formData, id)
       .then((response) => {
         console.log('comment created successfully:', response);
@@ -115,12 +102,24 @@ function ArticleInfo() {
                   {experience.comments.content}
                 </p>
                 <hr />
-                <h2 className='text-black font-bold text-lg'>Comments Section</h2>
+                <h2 className="text-black font-bold text-lg mt-4">
+                  Comments Section
+                </h2>
                 <div>
                   {experience.comments.map((comment, index) => (
-                    <div key={index} className="my-4 flex ">
-                      <img className='w-9 h-9 rounded-full' src={experience.user.image} />
-                      <p className="text-base leading-8 ml-3">{comment.content}</p>
+                    <div key={index} className="my-6 flex">
+                      <img
+                        className="w-9 h-9 rounded-full"
+                        src={experience.user.image}
+                      />
+                      <div>
+                        <p className="text-base leading-8 ml-3 text-purple-700">
+                          {experience.user.name}
+                        </p>
+                        <p className="text-base leading-8 ml-3 font-semibold">
+                          {comment.content}
+                        </p>
+                      </div>
                     </div>
                   ))}
                 </div>
