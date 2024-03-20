@@ -4,11 +4,11 @@ import { useParams } from 'react-router-dom';
 function CreateProjectModel() {
   const { id } = useParams();
   const [isModalOpen, setModalOpen] = useState(false);
+  const [image, setImage] = useState([]);
   const [formData, setFormData] = useState({
     _id: id,
     name: '',
     description: '',
-    image: null,
     montant: '',
     status: '',
   });
@@ -22,18 +22,34 @@ function CreateProjectModel() {
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setImage(file);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    createProject(formData)
+    const formDataa = new FormData();
+    formDataa.append('name', formData.name);
+    formDataa.append('description', formData.description);
+    formDataa.append('montant', formData.montant);
+    formDataa.append('status', formData.status);
+
+    if (image) {
+      formDataa.append('image', image);
+    }
+
+    createProject(formDataa)
       .then((response) => {
-        console.log('project created successfully:', response);
+        console.log('Project created successfully:', response);
         toggleModal();
       })
       .catch((error) => {
         console.error('Error creating project:', error);
       });
   };
+
   return (
     <div className="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16 -mt-24">
       <button
@@ -63,6 +79,21 @@ function CreateProjectModel() {
                   value={formData.name}
                   onChange={handleChange}
                   required
+                />
+              </div>
+              <div className="mb-4">
+                <label
+                  className="block text-gray-700 text-sm font-bold mb-2"
+                  htmlFor="image"
+                >
+                  Image
+                </label>
+                <input
+                  className="border rounded w-full py-2 px-3"
+                  type="file"
+                  id="image"
+                  name="image"
+                  onChange={handleImageChange}
                 />
               </div>
               <div className="mb-4">

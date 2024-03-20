@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { updateProject } from '../../Api/projectApi';
 import Swal from 'sweetalert2';
+
 function UpdateProjectModel({ projectId }) {
   const [isModalOpen, setModalOpen] = useState(false);
+  const [image, setImage] = useState(null); // State to store the selected image
   const [formData, setFormData] = useState({
     _id: projectId,
     name: '',
@@ -21,19 +23,34 @@ function UpdateProjectModel({ projectId }) {
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  const handleSubmit = async (e) => {
-    console.log('first');
-    e.preventDefault();
-    try {
-      const response = await updateProject(projectId, formData);
-      console.log(response);
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setImage(file);
+  };
 
-      Swal.fire('Success!', 'project has been updated.', 'success');
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const formDataa = new FormData();
+    formDataa.append('name', formData.name);
+    formDataa.append('description', formData.description);
+    formDataa.append('montant', formData.montant);
+    formDataa.append('status', formData.status);
+
+    if (image) {
+      formDataa.append('image', image);
+    }
+
+    try {
+      const response = await updateProject(projectId, formDataa);
+      console.log(response);
+      Swal.fire('Success!', 'Project has been updated.', 'success');
     } catch (error) {
       console.error('Error updating project:', error);
       Swal.fire('Error', 'Failed to update the project.', 'error');
     }
   };
+
   return (
     <div className="w-auto px-1">
       <button
@@ -63,6 +80,21 @@ function UpdateProjectModel({ projectId }) {
                   value={formData.name}
                   onChange={handleChange}
                   required
+                />
+              </div>
+              <div className="mb-4">
+                <label
+                  className="block text-gray-700 text-sm font-bold mb-2"
+                  htmlFor="image"
+                >
+                  Image
+                </label>
+                <input
+                  className="border rounded w-full py-2 px-3"
+                  type="file"
+                  id="image"
+                  name="image"
+                  onChange={handleImageChange}
                 />
               </div>
               <div className="mb-4">
@@ -100,7 +132,7 @@ function UpdateProjectModel({ projectId }) {
                   className="block text-gray-700 text-sm font-bold mb-2"
                   htmlFor="montant"
                 >
-                  montant
+                  Montant
                 </label>
                 <input
                   className="border rounded w-full py-2 px-3"
@@ -125,7 +157,7 @@ function UpdateProjectModel({ projectId }) {
                   type="submit"
                   className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                 >
-                  Create
+                  Update
                 </button>
               </div>
             </form>
