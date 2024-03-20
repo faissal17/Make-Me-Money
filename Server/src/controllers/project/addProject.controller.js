@@ -1,6 +1,8 @@
 const Project = require('../../models/Project.schema');
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
+const cloudinary = require('../../utils/cloudinary');
+const fs = require('fs');
 
 dotenv.config();
 
@@ -9,15 +11,25 @@ const addProject = async (req, res) => {
   const decodedToken = jwt.verify(token, process.env.SECRET_KEY);
 
   const { name, description, montant, status } = req.body;
-  if (!name || !description || !montant || !status) {
+
+  const imagePath = req.file.path;
+
+  if (!name || !description || !imagePath || !montant || !status) {
+    fs.unlinkSync(imagePath);
     return res
       .status(400)
       .json({ status: 'error', message: 'all fields are required' });
   }
   try {
+    const result = await cloudinary.uploader.upload(imagePath, {
+      folder: 'MMM',
+    });
+    fs.unlinkSync(imagePath);
+
     const project = await Project.create({
       name,
       description,
+      image: result.secure_url,
       montant,
       status,
       user: decodedToken.id,

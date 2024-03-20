@@ -15,8 +15,7 @@ const problemeSchema = new mongoose.Schema({
   },
   image: {
     type: String,
-    default:
-      'https://res.cloudinary.com/dx6vl9jdq/image/upload/v1710451817/Problem_Solving_Skills_-_Views_and_Advice_of_Steve_Pavlina_d6ummn.jpg',
+    required: true,
   },
   date: {
     type: Date,
@@ -38,10 +37,12 @@ const problemeSchema = new mongoose.Schema({
     ref: 'Like',
     default: null,
   },
-  comments: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Comment',
-  }],
+  comments: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Comment',
+    },
+  ],
   status: {
     type: String,
     enum: ['It can wait', 'urgent', 'dangerous'],

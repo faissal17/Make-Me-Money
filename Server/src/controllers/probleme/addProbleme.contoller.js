@@ -1,6 +1,8 @@
 const Probleme = require('../../models/Probleme.schema');
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
+const cloudinary = require('../../utils/cloudinary');
+const fs = require('fs');
 
 dotenv.config();
 
@@ -10,16 +12,32 @@ const addProbleme = async (req, res) => {
 
   const { name, description, website, tags, feedback, status } = req.body;
 
-  if (!name || !description || !website || !tags || !feedback || !status) {
+  const imagePath = req.file.path;
+
+  if (
+    !name ||
+    !description ||
+    !imagePath ||
+    !website ||
+    !tags ||
+    !feedback ||
+    !status
+  ) {
+    fs.unlinkSync(imagePath);
     return res
       .status(400)
       .json({ status: 'error', message: 'All fields are required' });
   }
 
   try {
+    const result = await cloudinary.uploader.upload(imagePath, {
+      folder: 'MMM',
+    });
+    fs.unlinkSync(imagePath);
     const probleme = await Probleme.create({
       name,
       description,
+      image: result.secure_url,
       website,
       tags,
       feedback,
