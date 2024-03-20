@@ -34,7 +34,11 @@ export const getUserProject = async (userId) => {
 };
 export const createProject = async (ProjectData) => {
   try {
-    const response = await projectApi.post('project', ProjectData);
+    const response = await projectApi.post('project', ProjectData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
     if (response.status === 201) {
       return response.data;
     } else {
@@ -62,7 +66,11 @@ export const deleteProject = async (ProjectId) => {
 
 export const updateProject = async (ProjectId, ProjectData) => {
   try {
-    const response = await projectApi.put(`project/${ProjectId}`, ProjectData);
+    const response = await projectApi.put(`project/${ProjectId}`, ProjectData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
     if (response.status === 200) {
       return response.data;
     } else {
