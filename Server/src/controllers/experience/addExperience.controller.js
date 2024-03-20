@@ -1,6 +1,7 @@
 const Experience = require('../../models/Experience.schema');
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
+const cloudinary = require('../../utils/cloudinary');
 
 dotenv.config();
 
@@ -11,6 +12,7 @@ const addExperience = async (req, res) => {
   const {
     name,
     description,
+    image,
     website,
     earning,
     tags,
@@ -22,6 +24,7 @@ const addExperience = async (req, res) => {
   if (
     !name ||
     !description ||
+    !image ||
     !website ||
     !earning ||
     !tags ||
@@ -35,9 +38,13 @@ const addExperience = async (req, res) => {
   }
 
   try {
+    const result = await cloudinary.uploader.upload(image, {
+      folder: 'MMM',
+    });
     const experience = await Experience.create({
       name,
       description,
+      image: result.secure_url,
       website,
       earning,
       tags,

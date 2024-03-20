@@ -10,8 +10,7 @@ const experienceSchema = new mongoose.Schema({
   },
   image: {
     type: String,
-    default:
-      'https://res.cloudinary.com/dx6vl9jdq/image/upload/v1710768184/How_Do_You_Make_Money_Posting_on_Pinterest__ufc98e.jpg',
+    required: true,
   },
   website: {
     type: String,
@@ -44,10 +43,12 @@ const experienceSchema = new mongoose.Schema({
     ref: 'Like',
     default: null,
   },
-  comments: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Comment',
-  }],
+  comments: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Comment',
+    },
+  ],
   status: {
     type: String,
     enum: ['excellent', 'good', 'not-recommended'],
