@@ -1,8 +1,9 @@
 const express = require('express');
 
 const projectRoutes = express.Router();
+const multer = require('multer');
 
-const {checkAuth} = require('../../middlewares/authMiddleware')
+const { checkAuth } = require('../../middlewares/authMiddleware');
 
 const addProject = require('../../controllers/project/addProject.controller');
 const {
@@ -12,14 +13,19 @@ const {
 const getProjectByID = require('../../controllers/project/getProjectByID.controller');
 const updatedProject = require('../../controllers/project/updateProject.controller');
 const deletedProject = require('../../controllers/project/deleteProject.controller');
-projectRoutes.route('/').post(addProject).get(getAllProject);
+
+const upload = multer({ dest: 'uploads/' });
+
+projectRoutes
+  .route('/')
+  .post(upload.single('image'), addProject)
+  .get(getAllProject);
 projectRoutes
   .route('/:id')
   .get(getProjectByID)
-  .put(updatedProject)
+  .put(upload.single('image'), updatedProject)
   .delete(deletedProject);
 
-  projectRoutes.route('/current/:id').get(checkAuth, getUserProject);
-
+projectRoutes.route('/current/:id').get(checkAuth, getUserProject);
 
 module.exports = projectRoutes;
