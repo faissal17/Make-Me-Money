@@ -1,7 +1,11 @@
 const Probleme = require('../../models/Probleme.schema');
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
+const cloudinary = require('../../utils/cloudinary');
+const fs = require('fs');
+
 dotenv.config();
+
 const updateProbleme = async (req, res) => {
   try {
     const { id } = req.params;
@@ -25,25 +29,42 @@ const updateProbleme = async (req, res) => {
     }
 
     const isAuthorized =
-    foundProbleme.user == decodedToken.id || decodedToken.role === 'Admin';
-    if (isAuthorized) {
-      const updatedProbleme = await Probleme.findByIdAndUpdate(
-        id,
-        updateFields,
-        {
-          new: true,
-          runValidators: true,
-        },
-      );
+      foundProbleme.user == decodedToken.id || decodedToken.role === 'Admin';
 
-      return res
-        .status(200)
-        .json({ message: 'Probleme updated', updatedProbleme });
-    } else {
+    if (!isAuthorized) {
       return res.status(403).json({
         message: "Unauthorized - You can't update this probleme",
       });
     }
+
+    if (req.file) {
+      const imagePath = req.file.path;
+
+      try {
+        const result = await cloudinary.uploader.upload(imagePath, {
+          folder: 'MMM', 
+        });
+        fs.unlinkSync(imagePath);
+
+        updateFields.image = result.secure_url;
+      } catch (uploadError) {
+        console.error(uploadError);
+        return res.status(500).json({ message: 'Error uploading image' });
+      }
+    }
+
+    const updatedProbleme = await Probleme.findByIdAndUpdate(
+      id,
+      updateFields,
+      {
+        new: true,
+        runValidators: true,
+      },
+    );
+
+    return res
+      .status(200)
+      .json({ message: 'Probleme updated', updatedProbleme });
   } catch (error) {
     if (error.name === 'ValidationError') {
       return res.status(400).json({ message: error.message });

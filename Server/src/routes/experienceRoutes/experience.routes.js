@@ -1,6 +1,6 @@
 const express = require('express');
 const experienceRoutes = express.Router();
-const multer = require('multer'); // Import multer
+const multer = require('multer'); 
 const { checkAuth } = require('../../middlewares/authMiddleware');
 
 const addExperince = require('../../controllers/experience/addExperience.controller');
@@ -13,7 +13,7 @@ const updateExperience = require('../../controllers/experience/updateExperience.
 const deletedExperience = require('../../controllers/experience/deleteExperience.controller');
 
 // Configure multer
-const upload = multer({ dest: 'uploads/' }); // Set destination for temporary storage
+const upload = multer({ dest: 'uploads/' });
 
 experienceRoutes
   .route('/')

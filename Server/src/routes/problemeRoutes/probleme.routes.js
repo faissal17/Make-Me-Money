@@ -1,5 +1,6 @@
 const express = require('express');
 const { checkAuth } = require('../../middlewares/authMiddleware');
+const multer = require('multer');
 
 const problemeRoutes = express.Router();
 
@@ -11,12 +12,18 @@ const {
 const getProblemeByID = require('../../controllers/probleme/getProblemeByID.controller');
 const updatedProbleme = require('../../controllers/probleme/updateProbleme.controller');
 const deletedProbleme = require('../../controllers/probleme/deleteProbleme.controller');
-problemeRoutes.route('/').post(addProbleme).get(getAllProbleme);
+
+const upload = multer({ dest: 'uploads/' });
+
+problemeRoutes
+  .route('/')
+  .post(upload.single('image'), addProbleme)
+  .get(getAllProbleme);
 
 problemeRoutes
   .route('/:id')
   .get(getProblemeByID)
-  .put(updatedProbleme)
+  .put(upload.single('image'), updatedProbleme)
   .delete(deletedProbleme);
 
 problemeRoutes.route('/current/:id').get(checkAuth, getUserProbleme);
