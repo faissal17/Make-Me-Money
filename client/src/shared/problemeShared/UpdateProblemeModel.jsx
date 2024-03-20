@@ -3,6 +3,7 @@ import { updateProbleme } from '../../Api/probleme.api';
 import Swal from 'sweetalert2';
 function UpdateProblemeModel({ problemeId }) {
   const [isModalOpen, setModalOpen] = useState(false);
+  const [image, setImage] = useState(null);
   const [formData, setFormData] = useState({
     _id: problemeId,
     name: '',
@@ -28,19 +29,37 @@ function UpdateProblemeModel({ problemeId }) {
     setFormData((prevData) => ({ ...prevData, tags: value.split(',') }));
   };
 
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setImage(file);
+  };
+
   const handleSubmit = async (e) => {
-    console.log('first');
     e.preventDefault();
     try {
-      const response = await updateProbleme(problemeId, formData);
+      const formDataa = new FormData();
+      formDataa.append('name', formData.name);
+      formDataa.append('description', formData.description);
+      formDataa.append('website', formData.website);
+      formDataa.append('feedback', formData.feedback);
+      formDataa.append('status', formData.status);
+      formDataa.append('tags', formData.tags.join(','));
+
+      if (image) {
+        formDataa.append('image', image);
+      }
+
+      const response = await updateProbleme(problemeId, formDataa);
       console.log(response);
 
-      Swal.fire('Success!', 'probleme has been updated.', 'success');
+      Swal.fire('Success!', 'Probleme has been updated.', 'success');
+      toggleModal();
     } catch (error) {
-      console.error('Error updating probleme:', error);
-      Swal.fire('Error', 'Failed to update the probleme.', 'error');
+      console.error('Error updating Probleme:', error);
+      Swal.fire('Error', 'Failed to update the Probleme.', 'error');
     }
   };
+
   return (
     <div className="w-auto px-1">
       <button
@@ -70,6 +89,21 @@ function UpdateProblemeModel({ problemeId }) {
                   value={formData.name}
                   onChange={handleChange}
                   required
+                />
+              </div>
+              <div className="mb-4">
+                <label
+                  className="block text-gray-700 text-sm font-bold mb-2"
+                  htmlFor="image"
+                >
+                  Image
+                </label>
+                <input
+                  className="border rounded w-full py-2 px-3"
+                  type="file"
+                  id="image"
+                  name="image"
+                  onChange={handleImageChange}
                 />
               </div>
               <div className="mb-4">
