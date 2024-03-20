@@ -2,6 +2,7 @@ const Experience = require('../../models/Experience.schema');
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
 const cloudinary = require('../../utils/cloudinary');
+const fs = require('fs'); // Import fs module to handle file operations
 
 dotenv.config();
 
@@ -12,7 +13,6 @@ const addExperience = async (req, res) => {
   const {
     name,
     description,
-    image,
     website,
     earning,
     tags,
@@ -21,10 +21,13 @@ const addExperience = async (req, res) => {
     status,
   } = req.body;
 
+  // Get the path of the uploaded file
+  const imagePath = req.file.path;
+
   if (
     !name ||
     !description ||
-    !image ||
+    !imagePath || // Check if imagePath is available
     !website ||
     !earning ||
     !tags ||
@@ -32,15 +35,21 @@ const addExperience = async (req, res) => {
     !feedback ||
     !status
   ) {
+    // Delete the uploaded file if validation fails
+    fs.unlinkSync(imagePath);
     return res
       .status(400)
       .json({ status: 'error', message: 'All fields are required' });
   }
 
   try {
-    const result = await cloudinary.uploader.upload(image, {
+    const result = await cloudinary.uploader.upload(imagePath, {
       folder: 'MMM',
     });
+
+    // Delete the uploaded file after successful upload to Cloudinary
+    fs.unlinkSync(imagePath);
+
     const experience = await Experience.create({
       name,
       description,
