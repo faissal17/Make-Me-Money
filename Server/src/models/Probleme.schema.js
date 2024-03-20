@@ -38,11 +38,10 @@ const problemeSchema = new mongoose.Schema({
     ref: 'Like',
     default: null,
   },
-  comment: {
+  comments: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Comment',
-    default: null,
-  },
+  }],
   status: {
     type: String,
     enum: ['It can wait', 'urgent', 'dangerous'],
