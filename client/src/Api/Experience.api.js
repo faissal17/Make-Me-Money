@@ -36,8 +36,8 @@ export const createExp = async (expData) => {
   try {
     const response = await ExpApi.post('experince', expData, {
       headers: {
-        'Content-Type': 'multipart/form-data' // Set Content-Type to multipart/form-data
-      }
+        'Content-Type': 'multipart/form-data',
+      },
     });
     if (response.status === 201) {
       return response.data;
@@ -66,7 +66,11 @@ export const deleteExperiences = async (ExpId) => {
 
 export const updateExp = async (ExpId, expData) => {
   try {
-    const response = await ExpApi.put(`experince/${ExpId}`, expData);
+    const response = await ExpApi.put(`experince/${ExpId}`, expData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
     if (response.status === 200) {
       return response.data;
     } else {

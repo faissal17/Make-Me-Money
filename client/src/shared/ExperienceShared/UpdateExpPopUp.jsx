@@ -5,11 +5,11 @@ import Swal from 'sweetalert2';
 
 function UpdateExpPopUp({ postId }) {
   const [isModalOpen, setModalOpen] = useState(false);
+  const [image, setImage] = useState(null); // State to store the selected image
   const [formData, setFormData] = useState({
     _id: postId,
     name: '',
     description: '',
-    image: null,
     website: '',
     earning: '',
     location: '',
@@ -24,8 +24,8 @@ function UpdateExpPopUp({ postId }) {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((pervPost) => ({
-      ...pervPost,
+    setFormData((prevData) => ({
+      ...prevData,
       [name]: value,
     }));
   };
@@ -35,14 +35,33 @@ function UpdateExpPopUp({ postId }) {
     setFormData((prevData) => ({ ...prevData, tags: value.split(',') }));
   };
 
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setImage(file);
+  };
+
   const handleSubmit = async (e) => {
-    console.log('first');
     e.preventDefault();
     try {
-      const response = await updateExp(postId, formData);
+      const formDataa = new FormData();
+      formDataa.append('name', formData.name);
+      formDataa.append('description', formData.description);
+      formDataa.append('website', formData.website);
+      formDataa.append('earning', formData.earning);
+      formDataa.append('location', formData.location);
+      formDataa.append('feedback', formData.feedback);
+      formDataa.append('status', formData.status);
+      formDataa.append('tags', formData.tags.join(','));
+
+      if (image) {
+        formDataa.append('image', image);
+      }
+
+      const response = await updateExp(postId, formDataa);
       console.log(response);
 
       Swal.fire('Success!', 'Experience has been updated.', 'success');
+      toggleModal();
     } catch (error) {
       console.error('Error updating Experience:', error);
       Swal.fire('Error', 'Failed to update the Experience.', 'error');
@@ -85,6 +104,21 @@ function UpdateExpPopUp({ postId }) {
                   value={formData.name}
                   onChange={handleChange}
                   required
+                />
+              </div>
+              <div className="mb-4">
+                <label
+                  className="block text-gray-700 text-sm font-bold mb-2"
+                  htmlFor="image"
+                >
+                  Image
+                </label>
+                <input
+                  className="border rounded w-full py-2 px-3"
+                  type="file"
+                  id="image"
+                  name="image"
+                  onChange={handleImageChange}
                 />
               </div>
               <div className="mb-4">
