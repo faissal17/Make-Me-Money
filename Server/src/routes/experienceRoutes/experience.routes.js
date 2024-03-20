@@ -17,13 +17,13 @@ const upload = multer({ dest: 'uploads/' }); // Set destination for temporary st
 
 experienceRoutes
   .route('/')
-  .post(upload.single('image'), addExperince) // Use multer middleware for file upload
+  .post(upload.single('image'), addExperince)
   .get(checkAuth, getAllExperiences);
 
 experienceRoutes
   .route('/:id')
   .get(getExperienceByID)
-  .put(updateExperience)
+  .put(upload.single('image'), updateExperience)
   .delete(deletedExperience);
 
 experienceRoutes.route('/current/:id').get(checkAuth, getUserExperiences);
