@@ -44,6 +44,30 @@ function ArticleInfo() {
 
   return (
     <div className="max-w-screen-xl mx-auto p-5 sm:p-8 md:p-12 relative">
+      <address className="flex items-center justify-center mb-6 not-italic">
+        <div className="inline-flex items-center justify-center mr-3 text-sm text-gray-900">
+          <img
+            className="mr-4 w-16 h-16 rounded-full"
+            src={experience?.user.image}
+            alt="Jese Leos"
+          />
+          <div>
+            <a
+              href="#"
+              rel="author"
+              className="text-xl font-bold text-gray-900"
+            >
+              {experience?.user.name}
+            </a>
+            <p className="text-base text-gray-500 dark:text-gray-400">
+              {experience?.user.email}
+            </p>
+            <p className="text-base text-gray-500 dark:text-gray-400">
+              <time> {experience?.date}</time>
+            </p>
+          </div>
+        </div>
+      </address>
       {experience && (
         <div>
           <div
