@@ -34,3 +34,21 @@ export const getCurrentUser = async () => {
     throw error;
   }
 };
+
+export const updateUser = async (userId, userData) => {
+  try {
+    const response = await userApi.put(`/user/${userId}`, userData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    if (response.status === 200) {
+      return response.data;
+    } else {
+      throw new Error('Failed to update');
+    }
+  } catch (error) {
+    console.error('Error updating experience:', error);
+    throw error;
+  }
+};
