@@ -50,8 +50,13 @@ function ProjectHome() {
                     {project.name}
                   </h4>
                   <div className="mt-1 truncate">{project.description}</div>
-                  <div className="mt-1 bg-teal-200 text-teal-800 text-xs px-2 inline-block rounded-full font-semibold tracking-wide">
-                    {project.montant}$
+                  <div className="flex justify-between">
+                    <div className="mt-1 bg-teal-200 text-teal-800 text-md px-2 inline-block rounded-full font-semibold tracking-wide">
+                      {project.montant}$
+                    </div>
+                    <button className="mt-1 bg-purple-200 text-purple-800 text-md px-2 inline-block rounded-full font-semibold tracking-wide">
+                      Contribute
+                    </button>
                   </div>
                 </div>
               </div>

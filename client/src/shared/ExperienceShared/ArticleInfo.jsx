@@ -78,7 +78,7 @@ function ArticleInfo() {
             }}
           ></div>
           <div className="max-w-2xl mx-auto">
-            <div className="-mt-36 bg-gray-100 rounded-b lg:rounded-b-none lg:rounded-r flex flex-col justify-between leading-normal p-10">
+            <div className="-mt-24 bg-gray-100 rounded-b lg:rounded-b-none lg:rounded-r flex flex-col justify-between leading-normal p-10">
               <div>
                 <h1 className="text-gray-900 font-bold text-3xl mb-2">
                   {experience.name}
