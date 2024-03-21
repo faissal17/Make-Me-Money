@@ -240,3 +240,32 @@ hr {
     line-height: 38px;
   }
 }
+
+.messages-container {
+  position: relative;
+}
+
+.chat-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-size: 24px;
+  z-index: 999;
+}
+
+.messages {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 998;
+}

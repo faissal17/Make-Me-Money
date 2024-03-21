@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { getAllProjects } from '../../Api/projectApi';
 import ExperienceNavbar from '../../shared/global/ExperienceNavbar';
+import Messages from '../../shared/global/Messages';
 
 function ProjectHome() {
   const [projects, setProject] = useState([]);
+  const [showMessages, setShowMessages] = useState(false);
 
   useEffect(() => {
     getAllProjects()
@@ -15,6 +17,11 @@ function ProjectHome() {
         console.error('Error fetching data:', error);
       });
   }, []);
+
+  const toggleMessages = () => {
+    setShowMessages(!showMessages);
+  };
+
   return (
     <React.Fragment>
       <ExperienceNavbar />
@@ -54,7 +61,10 @@ function ProjectHome() {
                     <div className="mt-1 bg-teal-200 text-teal-800 text-md px-2 inline-block rounded-full font-semibold tracking-wide">
                       {project.montant}$
                     </div>
-                    <button className="mt-1 bg-purple-200 text-purple-800 text-md px-2 inline-block rounded-full font-semibold tracking-wide">
+                    <button
+                      className="mt-1 bg-purple-200 text-purple-800 text-md px-2 inline-block rounded-full font-semibold tracking-wide"
+                      onClick={toggleMessages} 
+                    >
                       Contribute
                     </button>
                   </div>
@@ -63,6 +73,9 @@ function ProjectHome() {
             </div>
           ))
         )}
+      </div>
+      <div className="absolute top-3/4 right-6">
+        <Messages isOpen={showMessages} toggleMessages={toggleMessages} />
       </div>
     </React.Fragment>
   );

@@ -123,13 +123,26 @@ export default function ExperienceNavbar() {
                       <Menu.Item>
                         {({ active }) => (
                           <Link
-                            to={`/profile/${user._id}`}
+                            to={`/Profile/${user._id}`}
                             className={classNames(
                               active ? 'bg-gray-100' : '',
                               'block px-4 py-2 text-sm text-gray-700',
                             )}
                           >
                             Your Profile
+                          </Link>
+                        )}
+                      </Menu.Item>
+                      <Menu.Item>
+                        {({ active }) => (
+                          <Link
+                            to={`/Setting/${user._id}`}
+                            className={classNames(
+                              active ? 'bg-gray-100' : '',
+                              'block px-4 py-2 text-sm text-gray-700',
+                            )}
+                          >
+                            Setting
                           </Link>
                         )}
                       </Menu.Item>

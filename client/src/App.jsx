@@ -9,7 +9,8 @@ import ProblemeHome from './components/probleme/ProblemeHome';
 import ProjectHome from './components/project/ProjectHome';
 import ArticleInfo from './shared/ExperienceShared/ArticleInfo';
 import { PrivateRoutes } from './routes/PrivateRoutes';
-import profile from './components/user/profile';
+import Profile from './components/user/Profile';
+import Setting from './components/user/Setting';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
@@ -29,7 +30,8 @@ function App() {
             <Route path="/Experience" Component={ExperienceHome} />
             <Route path="/Probleme" Component={ProblemeHome} />
             <Route path="/Project" Component={ProjectHome} />
-            <Route path="/profile/:id" Component={profile} />
+            <Route path="/Profile/:id" Component={Profile} />
+            <Route path="/Setting/:id" Component={Setting} />
           </Route>
 
           {/*End Home Routes*/}

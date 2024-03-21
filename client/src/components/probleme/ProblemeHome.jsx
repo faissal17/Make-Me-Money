@@ -1,6 +1,7 @@
 import ExperienceNavbar from '../../shared/global/ExperienceNavbar';
 import React, { useEffect, useState } from 'react';
 import { getAllprobleme } from '../../Api/probleme.api';
+import Messages from '../../shared/global/Messages';
 
 function ProblemeHome() {
   const [problems, setProbleme] = useState([]);
@@ -61,6 +62,9 @@ function ProblemeHome() {
             </div>
           </div>
         ))}
+        <div className="absolute top-3/4 right-6">
+          <Messages />
+        </div>
       </div>
     </React.Fragment>
   );
