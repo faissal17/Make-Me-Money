@@ -8,6 +8,7 @@ import ExperienceHome from './components/Experiences/ExperienceHome';
 import ProblemeHome from './components/probleme/ProblemeHome';
 import ProjectHome from './components/project/ProjectHome';
 import ArticleInfo from './shared/ExperienceShared/ArticleInfo';
+import ProblemeInfo from './shared/problemeShared/ProblemeInfo';
 import { PrivateRoutes } from './routes/PrivateRoutes';
 import Profile from './components/user/Profile';
 import Setting from './components/user/Setting';
@@ -32,10 +33,11 @@ function App() {
             <Route path="/Project" Component={ProjectHome} />
             <Route path="/Profile/:id" Component={Profile} />
             <Route path="/Setting/:id" Component={Setting} />
+            <Route path="/Experience/:id" Component={ArticleInfo} />
+            <Route path="/Probleme/:id" Component={ProblemeInfo} />
           </Route>
 
           {/*End Home Routes*/}
-          <Route path="/info/:id" Component={ArticleInfo} />
         </Routes>
       </BrowserRouter>
     </React.Fragment>

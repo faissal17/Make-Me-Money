@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getAllExp } from '../../Api/Experience.api';
 import ProfileInfo from '../../shared/global/ProfileInfo';
-import Messages from '../../shared/global/Messages';
 function ExperienceHome() {
   const [experiences, setExperiences] = useState([]);
 
@@ -38,7 +37,7 @@ function ExperienceHome() {
               <div className="relative -mt-16 px-10 pt-5 pb-16 bg-white m-10 rounded-2xl">
                 <Link
                   to={{
-                    pathname: `/info/${experience._id}`,
+                    pathname: `/Experience/${experience._id}`,
                     state: { experience },
                   }}
                   className="font-semibold text-lg hover:text-indigo-600

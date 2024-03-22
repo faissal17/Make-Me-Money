@@ -1,7 +1,7 @@
 import ExperienceNavbar from '../../shared/global/ExperienceNavbar';
 import React, { useEffect, useState } from 'react';
 import { getAllprobleme } from '../../Api/probleme.api';
-import Messages from '../../shared/global/Messages';
+import { Link } from 'react-router-dom';
 
 function ProblemeHome() {
   const [problems, setProbleme] = useState([]);
@@ -43,7 +43,16 @@ function ProblemeHome() {
                 </div>
 
                 <h4 className="mt-1 text-xl font-semibold uppercase leading-tight truncate">
-                  {probleme.name}
+                  <Link
+                    to={{
+                      pathname: `/Probleme/${probleme._id}`,
+                      state: { probleme },
+                    }}
+                    className="font-semibold text-lg hover:text-indigo-600
+             transition duration-500 ease-in-out inline-block mb-2"
+                  >
+                    {probleme.name}
+                  </Link>
                 </h4>
 
                 <div className="mt-1 truncate">{probleme.description}</div>
