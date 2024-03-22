@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getExpById } from '../../Api/Experience.api';
-import { addComment, getComment } from '../../Api/Comment.api';
+import { addComment } from '../../Api/Comment.api';
 function ArticleInfo() {
   const { id } = useParams();
   console.log(id);

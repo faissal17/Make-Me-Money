@@ -81,3 +81,17 @@ export const updateProject = async (ProjectId, ProjectData) => {
     throw error;
   }
 };
+
+export const getProjectById = async (ProjectId) => {
+  try {
+    const response = await projectApi.get(`project/${ProjectId}`);
+    if (response.status === 200) {
+      return response.data;
+    } else {
+      throw new Error('Failed to update');
+    }
+  } catch (error) {
+    console.error('Error updating experience:', error);
+    throw error;
+  }
+};

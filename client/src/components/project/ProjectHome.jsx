@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getAllProjects } from '../../Api/projectApi';
 import ExperienceNavbar from '../../shared/global/ExperienceNavbar';
+import { Link } from 'react-router-dom';
 
 function ProjectHome() {
   const [projects, setProject] = useState([]);
@@ -59,7 +60,16 @@ function ProjectHome() {
                     </div>
                   </div>
                   <h4 className="mt-1 text-xl font-semibold uppercase leading-tight truncate">
-                    {project.name}
+                    <Link
+                      to={{
+                        pathname: `/Project/${project._id}`,
+                        state: { project },
+                      }}
+                      className="font-semibold text-lg hover:text-indigo-600
+             transition duration-500 ease-in-out inline-block mb-2"
+                    >
+                      {project.name}
+                    </Link>{' '}
                   </h4>
                   <div className="mt-1 truncate">{project.description}</div>
                   <div className="flex justify-between">

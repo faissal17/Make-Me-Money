@@ -9,6 +9,7 @@ import ProblemeHome from './components/probleme/ProblemeHome';
 import ProjectHome from './components/project/ProjectHome';
 import ArticleInfo from './shared/ExperienceShared/ArticleInfo';
 import ProblemeInfo from './shared/problemeShared/ProblemeInfo';
+import ProjectInfo from './shared/ProjectShared/ProjectInfo';
 import { PrivateRoutes } from './routes/PrivateRoutes';
 import Profile from './components/user/Profile';
 import Setting from './components/user/Setting';
@@ -35,6 +36,7 @@ function App() {
             <Route path="/Setting/:id" Component={Setting} />
             <Route path="/Experience/:id" Component={ArticleInfo} />
             <Route path="/Probleme/:id" Component={ProblemeInfo} />
+            <Route path="/Project/:id" Component={ProjectInfo} />
           </Route>
 
           {/*End Home Routes*/}
