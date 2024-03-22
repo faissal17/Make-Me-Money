@@ -62,9 +62,6 @@ function ProblemeHome() {
             </div>
           </div>
         ))}
-        <div className="absolute top-3/4 right-6">
-          <Messages />
-        </div>
       </div>
     </React.Fragment>
   );

@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { getAllProjects } from '../../Api/projectApi';
 import ExperienceNavbar from '../../shared/global/ExperienceNavbar';
-import Messages from '../../shared/global/Messages';
 
 function ProjectHome() {
   const [projects, setProject] = useState([]);
-  const [showMessages, setShowMessages] = useState(false);
 
   useEffect(() => {
     getAllProjects()
@@ -18,8 +16,15 @@ function ProjectHome() {
       });
   }, []);
 
-  const toggleMessages = () => {
-    setShowMessages(!showMessages);
+  const handleContributeClick = (project) => {
+    const emailSubject = `Contributing in project ${project.name}`;
+    const emailBody = `Write your message here...`;
+    const mailtoLink = `mailto:${
+      project.user.email
+    }?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(
+      emailBody,
+    )}`;
+    window.location.href = mailtoLink;
   };
 
   return (
@@ -63,7 +68,7 @@ function ProjectHome() {
                     </div>
                     <button
                       className="mt-1 bg-purple-200 text-purple-800 text-md px-2 inline-block rounded-full font-semibold tracking-wide"
-                      onClick={toggleMessages} 
+                      onClick={() => handleContributeClick(project)}
                     >
                       Contribute
                     </button>
@@ -73,9 +78,6 @@ function ProjectHome() {
             </div>
           ))
         )}
-      </div>
-      <div className="absolute top-3/4 right-6">
-        <Messages isOpen={showMessages} toggleMessages={toggleMessages} />
       </div>
     </React.Fragment>
   );
