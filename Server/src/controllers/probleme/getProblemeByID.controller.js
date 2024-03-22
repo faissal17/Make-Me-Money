@@ -3,7 +3,9 @@ const Probleme = require('../../models/Probleme.schema');
 const getProblemeByID = async (req, res) => {
   const { id } = req.params;
   try {
-    const ProblemeByID = await Probleme.findById(id);
+    const ProblemeByID = await Probleme.findById(id)
+      .populate('user')
+      .populate({ path: 'comments', model: 'Comment' });
     if (!ProblemeByID) {
       return res.status(404).json({ message: 'No Probleme was found' });
     }

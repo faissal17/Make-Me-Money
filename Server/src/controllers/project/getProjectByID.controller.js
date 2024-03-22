@@ -3,7 +3,7 @@ const Project = require('../../models/Project.schema');
 const getProjectByID = async (req, res) => {
   const { id } = req.params;
   try {
-    const projectId = await Project.findById(id);
+    const projectId = await Project.findById(id).populate('user');
     if (!projectId) {
       return res.status(404).json({ message: 'No Project was found' });
     }
