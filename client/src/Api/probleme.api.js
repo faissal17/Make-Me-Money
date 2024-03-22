@@ -87,3 +87,17 @@ export const updateProbleme = async (problemeId, problemeData) => {
     throw error;
   }
 };
+
+export const getProblemeById = async (problemeId) => {
+  try {
+    const response = await problemeApi.get(`probleme/${problemeId}`);
+    if (response.status === 200) {
+      return response.data;
+    } else {
+      throw new Error('Failed to update');
+    }
+  } catch (error) {
+    console.error('Error updating experience:', error);
+    throw error;
+  }
+};
