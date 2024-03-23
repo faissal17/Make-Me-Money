@@ -5,7 +5,6 @@ const bcryptjs = require('bcryptjs');
 
 jest.mock('../../src/models/User.schema');
 jest.mock('jsonwebtoken');
-
 describe('ResetPasswordController', () => {
   let req;
   let res;
@@ -13,10 +12,10 @@ describe('ResetPasswordController', () => {
   beforeEach(() => {
     req = {
       query: {
-        token: 'faissalaoukacha',
+        token: 'valid_token', // Assuming you have a valid token for testing
       },
       body: {
-        password: 'faissalaoukacha123',
+        password: 'newPassword123', // Assuming this is the new password provided
       },
     };
 
@@ -25,13 +24,17 @@ describe('ResetPasswordController', () => {
       json: jest.fn(),
     };
 
-    jwt.verify = jest.fn().mockReturnValue({ email: 'kevindebruyn@gmail.com' });
+    // Mock jwt.verify method to return a valid decoded token
+    jwt.verify = jest.fn().mockReturnValue({ email: 'test@example.com' });
 
+    // Mock bcryptjs.genSalt and bcryptjs.hash methods
     bcryptjs.genSalt = jest.fn().mockResolvedValue('mockedSalt');
     bcryptjs.hash = jest.fn().mockResolvedValue('hashedPassword123');
 
+    // Mock User.updateOne method
     User.updateOne = jest.fn().mockResolvedValue({});
 
+    // Clear mocks
     jest.clearAllMocks();
   });
 
@@ -39,13 +42,13 @@ describe('ResetPasswordController', () => {
     await ResetPassworController.resetPassword(req, res);
 
     expect(jwt.verify).toHaveBeenCalledWith(
-      'faissalaoukacha',
+      'valid_token',
       process.env.SECRET_KEY,
     );
     expect(bcryptjs.genSalt).toHaveBeenCalledWith(10);
-    expect(bcryptjs.hash).toHaveBeenCalledWith('faissalaoukacha123', 'mockedSalt');
+    expect(bcryptjs.hash).toHaveBeenCalledWith('newPassword123', 'mockedSalt');
     expect(User.updateOne).toHaveBeenCalledWith(
-      { email: 'kevindebruyn@gmail.com' },
+      { email: 'test@example.com' },
       { password: 'hashedPassword123' },
     );
     expect(res.status).toHaveBeenCalledWith(200);
@@ -53,6 +56,7 @@ describe('ResetPasswordController', () => {
       success: 'Password reset successfully',
     });
   });
+
   it('should return error for other errors', async () => {
     User.updateOne.mockRejectedValue(new Error('DatabaseError'));
 

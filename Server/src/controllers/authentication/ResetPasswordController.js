@@ -16,6 +16,7 @@ class ResetPassworController {
     const email = decodedToken.email;
     const salt = await bcryptjs.genSalt(10);
 
+    // Hash the new password with the generated salt
     const hashedPassword = await bcryptjs.hash(req.body.password, salt);
     try {
       const updatedUser = await User.updateOne(
@@ -25,7 +26,7 @@ class ResetPassworController {
 
       return res.status(200).json({ success: 'Password reset successfully' });
     } catch (error) {
-      console.log(error.message);
+      console.error(error.message);
       return res.status(400).json({ error: 'Invalid or expired token.' });
     }
   };
