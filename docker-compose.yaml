@@ -1,0 +1,23 @@
+version: "3.8"
+services:
+  backend:
+    container_name: makememoney_backend
+    build: ./Server
+    image: makememoney_backend:1.0.0
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./Server:/app
+      - /app/node_modules
+
+  frontend:
+    container_name: makememoney_frontend
+    build: ./client
+    image: makememoney_frontend:1.0.0
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    depends_on:
+      - backend
