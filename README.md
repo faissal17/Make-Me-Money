@@ -15,3 +15,44 @@
 4. ***Community Interaction***: Engage with a vibrant community of freelancers, ask questions, and participate in discussions. Networking opportunities abound, providing a chance to connect with like-minded individuals.
 
 5. ***Resource Center***: Explore a curated collection of resources, tools, and guides to enhance your freelancing journey. From productivity apps to contract templates, Make-Me-Money has you covered.
+
+# Getting started
+
+1. Follow these simple steps to get a local copy up and running.
+
+```bash
+git clone https://github.com/faissal17/payment-management-system.git
+```
+
+2. navigate the project
+
+```bash
+cd payment-management-system
+```
+
+3.  Install dependencies using npm
+
+```bash
+npm install
+```
+
+# Configration
+
+You may need to configure some environment variables.
+
+1. Extract the .env file from the .env.example file
+
+```bash
+cp .env.example .env
+```
+
+I already mentioned in env. an example that you will need to add a secret key you can write whatever you want but in case you want more security you can run the following command in your terminal
+
+```bash
+node -e "console.log(require('crypto').randomBytes(256).toString('base64'));"
+
+```
+
+run the following command and get the generated secret key
+
+you will also need some requirements in your .env file
