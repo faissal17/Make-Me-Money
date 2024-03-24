@@ -184,9 +184,5 @@ For detailed information on Docker CLI commands and their usage, refer to the of
 
 <!-- Click [here](./docker-cli.md) for the full Docker CLI guide. -->
 
-## Support
-
-For assistance or questions related to the Docker setup, contact our support team at [yhammani.dev@gmail.com](mailto:yhammani.dev@gmail.com).
-
 Happy coding!
 
