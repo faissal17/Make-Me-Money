@@ -19,15 +19,15 @@ jobs:
         with:
           node-version: '20.11.0'
 
-      - name: Install dependencies (Server)
+      - name: Install dependencies (server)
 
         run: |
-          cd Server 
+          cd server 
           npm ci
 
       - name: Run tests
         run: |
-          cd Server 
+          cd server 
           npx jest
 
       - name: Login to DockerHub
@@ -39,16 +39,16 @@ jobs:
 
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build and push Docker image (Server)
+      - name: Build and push Docker image (server)
 
         uses: docker/build-push-action@v2
 
         with:
-          context: Server
+          context: server
 
           push: true
 
-          tags: faissal454/Server_hub:latest
+          tags: faissal454/server_hub:latest
 
       - name: Build and push Docker image (client)
 
