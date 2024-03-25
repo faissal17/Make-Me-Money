@@ -26,7 +26,7 @@ class ResetPassworController {
 
       return res.status(200).json({ success: 'Password reset successfully' });
     } catch (error) {
-      console.error(error.message);
+      console.log(error.message);
       return res.status(400).json({ error: 'Invalid or expired token.' });
     }
   };
